@@ -27,7 +27,7 @@ const Nav = (suiwallet:any) => {
           <img src={ava} alt={ava} />
           <div className="discord_title">
           <h4>{items.username}</h4>
-          <span>{items.email}</span>
+          {/* <span>{items.email}</span> */}
           </div>
         </div>
       );
@@ -45,7 +45,7 @@ const Nav = (suiwallet:any) => {
                 <img src={ava} alt={ava} />
                 <div className="discord_title">
                 <h4>{response.data.username}</h4>
-                <span>{response.data.email}</span>
+                {/* <span>{response.data.email}</span> */}
                 </div>
               </div>
             );
@@ -63,7 +63,7 @@ const Nav = (suiwallet:any) => {
   return (
     <nav>
       <div className="nav_title">
-      <h1>Cool name</h1>
+        <h1>Cool name</h1>
       </div>
       <div className="buttons_nav">
         { (Cookies.get('token')) ? discord_mode : null }

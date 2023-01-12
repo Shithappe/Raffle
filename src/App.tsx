@@ -4,6 +4,7 @@ import { useWallet } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
 import Nav from './components/Nav';
 import Tabs from './components/Tabs';
+import Welcome from './components/Welcome';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -64,13 +65,16 @@ function App() {
   return (
     <div className="App">
       {walletAdress ? <Nav suiwallet={walletAdress} /> : null}
-      <div className="main">
-        <div className="menu">
-          { listMenu }
-          <hr />
+      { token || Cookies.get('token') ? 
+        <div className="main">
+          <div className="menu">
+            { listMenu }
+            <hr />
+          </div>
+          <Tabs/>
         </div>
-        <Tabs/>
-      </div>
+      : <Welcome/>
+      }     
     </div>
   )
 }

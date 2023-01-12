@@ -10,8 +10,7 @@ function Card_Active(data:any) {
   const name_button = data.data.status == '0' ? 'Join' : 'See winers';
 
 
-  console.log(data.data);
-  
+  // console.log(data.data);
   
   
   const [days, setDays] = useState(0);
@@ -46,7 +45,10 @@ function Card_Active(data:any) {
     }
 }, []);
 
-function hendleJoin(){
+function hendleJoin(e:any){
+  console.log(e.target);
+  e.target.innerHTML = 'Joined';
+  e.target.style.backgroundColor = 'green';
   axios.post('https://api.suiecosystem.top/api/events/start', 
   {
     suiwallet: Cookies.get('suiwallet'),

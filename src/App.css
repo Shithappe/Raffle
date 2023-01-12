@@ -393,3 +393,9 @@ margin: 5px 0;
   font-size: small;
   color: #7d91a0;
 }
+
+canvas {
+  display:block;
+  margin:auto;
+  background:#ecf0f1;
+}
