@@ -35,7 +35,19 @@ function App() {
         
       })
       .catch(console.log)
-    } 
+    }
+    else{
+      axios.post('https://api.suiecosystem.top/api/authuser', {
+        suiwallet: wallet.account.address
+      })
+      .then(function (response) {
+        Cookies.set('token', response.data.data.token);
+        setToken(response.data.data.token);
+        console.log(response.data);
+        
+      })
+      .catch(console.log)
+    }
   }
   }, [wallet.account?.address])
   

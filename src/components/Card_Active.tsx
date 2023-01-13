@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png";
+import discord_logo from "../assets/discord.png";
 
 function Card_Active(data:any) {
   const [active, setActive] = useState(true);
@@ -10,7 +12,7 @@ function Card_Active(data:any) {
   const name_button = data.data.status == '0' ? 'Join' : 'See winers';
 
 
-  // console.log(data.data);
+  console.log(data.data);
   
   
   const [days, setDays] = useState(0);
@@ -67,20 +69,23 @@ function hendleJoin(e:any){
     <div className="main_card">
       <div className={cardClass}>
         <div className="image_card">
-          <img className="big_img" src="https://pbs.twimg.com/profile_banners/1377276171075739652/1666059287/1500x500" alt="" />
-          <img className="small_img" src="https://pbs.twimg.com/profile_images/1565733504826150912/WlP72ukv_400x400.jpg" alt="" />
+        <img className="big_img" src={data.data.img} alt="https://pbs.twimg.com/profile_banners/1377276171075739652/1666059287/1500x500" />
+          <img className="small_img" src={data.data.logo} alt="https://pbs.twimg.com/profile_images/1565733504826150912/WlP72ukv_400x400.jpg" />
         </div>
         <div className="content_card">
           <div className="title_card">
-            <span>Private</span>
+            <span>Public</span>
             <h2>{data.data.title}</h2>
           </div>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>
+            <span>{data.data.description}</span>
 
             <span>Amount: {data.data.amount}</span>
             <span>Will be winner: {data.data.amount}</span>
+            <div className="social">
+              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
+            </div>
             <div className="time">
-
                 <div className="timer" role="timer">
                 <div className="box">
                       <p id="day">{days < 10 ? "0" + days : days}</p>
