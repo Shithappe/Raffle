@@ -228,6 +228,20 @@ nav h1{
   transition: all 0.2s ease-in-out;
   font-size: 15px;
 }
+.blockedCard{
+  width: 350px;
+  height: 34.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+#ls{
+  font-size: 2.5em;
+}
+
 
 .image_card{
   display: flex;
@@ -291,12 +305,12 @@ margin: 5px 0;
 }
 
 .back{
-  height: 27rem;
+  height: 31.4rem;
   width: 95%;
   transform: perspective(600px) rotateY(180deg);
-  /* background-color: #f1f1f1; */
   position: relative;
-  bottom: 28rem;
+  bottom: 32.3rem;
+  left: .5rem;
 
   background-color: rgb(248, 248, 255);
   border: 0.05rem solid #eee;
@@ -466,11 +480,17 @@ margin: 5px 0;
   align-items: center;
 }
 .container_welcome h2{
+  margin: 0 0 50px;
+  font-size: 45px;
+}
+.container_welcome h1{
   margin: 0;
+  font-size: 85px;
 }
 .container_welcome h3{
   font-weight: normal;
-  margin: 0 0 10px;
+  margin: 40px 0 15px;
+  font-size: larger;
 }
 .container_welcome button{
   background-color: #1a1a1a;

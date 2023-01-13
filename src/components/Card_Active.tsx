@@ -5,6 +5,7 @@ import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png
 import discord_logo from "../assets/discord.png";
 
 function Card_Active(data:any) {
+  const [blockCard, setBlockCard] = useState(false);
   const [active, setActive] = useState(true);
   const [cardClass, setCardClass] = useState('card');  
   
@@ -47,66 +48,85 @@ function Card_Active(data:any) {
     }
 }, []);
 
+
+
 function hendleJoin(e:any){
-  console.log(e.target);
-  e.target.innerHTML = 'Joined';
-  e.target.style.backgroundColor = 'green';
-  axios.post('https://api.suiecosystem.top/api/events/start', 
-  {
-    suiwallet: Cookies.get('suiwallet'),
-    raffle_id: data.data.id
-  },
-  {
-    headers: { Authorization: `Bearer ${Cookies.get("token")}` }
-  })
-  .then((response)=>{
-    console.log(response.data);
-  })
-  .catch(console.log)
+  if (!localStorage.getItem('discord_data')) {
+    setBlockCard(true);
+    e.target.style.backgroundColor = 'red';
+    setTimeout(() => {
+      e.target.style.backgroundColor = '#2b2b2b';
+      setBlockCard(false);
+    }, 5000);
+  }
+  else{
+    e.target.innerHTML = 'Joined';
+    e.target.style.backgroundColor = 'green';
+    axios.post('https://api.suiecosystem.top/api/events/start', 
+    {
+      suiwallet: Cookies.get('suiwallet'),
+      raffle_id: data.data.id
+    },
+    {
+      headers: { Authorization: `Bearer ${Cookies.get("token")}` }
+    })
+    .then((response)=>{
+      console.log(response.data);
+    })
+    .catch(console.log)
+  }
 }
   
   return (
     <div className="main_card">
       <div className={cardClass}>
-        <div className="image_card">
-        <img className="big_img" src={data.data.img} alt="https://pbs.twimg.com/profile_banners/1377276171075739652/1666059287/1500x500" />
-          <img className="small_img" src={data.data.logo} alt="https://pbs.twimg.com/profile_images/1565733504826150912/WlP72ukv_400x400.jpg" />
+        {blockCard ? <div className="blockedCard"><h1>You need</h1><h1>auth with</h1><h1 id="ls">Discord</h1></div>
+        :
+        <div>
+           <div className="image_card">
+          <img className="big_img" src="https://pbs.twimg.com/profile_banners/1377276171075739652/1666059287/1500x500" alt="" />
+          <img className="small_img" src="https://pbs.twimg.com/profile_images/1565733504826150912/WlP72ukv_400x400.jpg" alt="" />
         </div>
         <div className="content_card">
-          <div className="title_card">
-            <span>Public</span>
-            <h2>{data.data.title}</h2>
-          </div>
-            <span>{data.data.description}</span>
-
-            <span>Amount: {data.data.amount}</span>
-            <span>Will be winner: {data.data.amount}</span>
-            <div className="social">
-              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
-              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
-            </div>
-            <div className="time">
-                <div className="timer" role="timer">
-                <div className="box">
-                      <p id="day">{days < 10 ? "0" + days : days}</p>
-                      <span className="text">Days</span>
-                    </div>
-
-                    <div className="box">
-                      <p id="hour">{hours < 10 ? "0" + hours : hours}</p>
-                      <span className="text">Hours</span>
-                    </div>
-                    <div className="box">
-                      <p id="minute">{minutes < 10 ? "0" + minutes : minutes}</p>
-                      <span className="text">Minutes</span>
-                    </div>
-                    <div className="box">
-                      <p id="second">{seconds < 10 ? "0" + seconds : seconds}</p>
-                      <span className="text">Seconds</span>
-                    </div>
-                </div>
-            </div>
+        <div className="title_card">
+          <span>Public</span>
+          <h2>{data.data.title}</h2>
         </div>
+          <span>{data.data.description}</span>
+
+          <span>Amount: {data.data.amount}</span>
+          <span>Will be winner: {data.data.amount}</span>
+          <span>Reward type: {data.data.gift_type}</span>
+          <div className="social">
+            <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+            <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
+          </div>
+          <div className="time">
+              <div className="timer" role="timer">
+              <div className="box">
+                    <p id="day">{days < 10 ? "0" + days : days}</p>
+                    <span className="text">Days</span>
+                  </div>
+
+                  <div className="box">
+                    <p id="hour">{hours < 10 ? "0" + hours : hours}</p>
+                    <span className="text">Hours</span>
+                  </div>
+                  <div className="box">
+                    <p id="minute">{minutes < 10 ? "0" + minutes : minutes}</p>
+                    <span className="text">Minutes</span>
+                  </div>
+                  <div className="box">
+                    <p id="second">{seconds < 10 ? "0" + seconds : seconds}</p>
+                    <span className="text">Seconds</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+        </div>
+        }
+        
+        
       <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>
     </div>
     </div>

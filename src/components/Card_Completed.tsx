@@ -84,7 +84,7 @@ function handleBack(e:any){
             <span>{data.data.description}</span>
             <span>Amount: {data.data.amount}</span>
             <span>Will be winner: {data.data.amount}</span>
-            {/* <span>Status: {data.data.status}</span> */}
+            <span>Reward type: {data.data.gift_type}</span>
             <div className="social">
               <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
               <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
