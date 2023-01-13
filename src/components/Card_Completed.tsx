@@ -73,8 +73,8 @@ function handleBack(e:any){
       <div className="front">
       <div className={cardClass}>
         <div className="image_card">
-          <img className="big_img" src="https://pbs.twimg.com/profile_banners/1377276171075739652/1666059287/1500x500" alt="" />
-          <img className="small_img" src="https://pbs.twimg.com/profile_images/1565733504826150912/WlP72ukv_400x400.jpg" alt="" />
+        <img className="big_img" src={data.data.img} alt="" />
+          <img className="small_img" src={data.data.logo} alt="" />
         </div>
         <div className="content_card">
           <div className="title_card">

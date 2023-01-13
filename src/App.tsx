@@ -9,15 +9,15 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
-function App() {  
+function App() {
   const [menu, setMenu] = useState(['Raffls']);
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
   const listMenu = menu.map((menu_el: string) => <button>{menu_el}</button>);
 
-  const wallet = useWallet();  
+  const wallet = useWallet();
 
-  
+
   useEffect(() => {
     if (wallet.account?.address) {
       setWalletAdress(String(wallet.account?.address));
@@ -25,32 +25,49 @@ function App() {
 
       if (!Cookies.get('token')) {
 
-      axios.post('https://api.suiecosystem.top/api/authuser', {
-        suiwallet: wallet.account.address
-      })
-      .then(function (response) {
-        Cookies.set('token', response.data.data.token);
-        setToken(response.data.data.token);
-        console.log(response.data);
-        
-      })
-      .catch(console.log)
+        axios.post('https://api.suiecosystem.top/api/authuser', {
+          suiwallet: wallet.account.address
+        })
+          .then(function (response) {
+            Cookies.set('token', response.data.data.token);
+            setToken(response.data.data.token);
+            console.log(response.data);
+
+          })
+          .catch(console.log)
+      }
+      else{
+        axios.post('https://api.suiecosystem.top/api/authuser', {
+              suiwallet: wallet.account?.address
+            })
+              .then(function (response) {
+                Cookies.set('token', response.data.data.token);
+                setToken(response.data.data.token);
+                console.log(response.data);
+              })
+              .catch(console.log)
+        }
+      // else {
+      //   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
+      //   axios.get('https://api.suiecosystem.top/api/checkuser', { headers })
+      //     .then((response) => {
+      //       console.log(response.status);
+      //     })
+      //     .catch(() => {
+      //       axios.post('https://api.suiecosystem.top/api/authuser', {
+      //         suiwallet: wallet.account?.address
+      //       })
+      //         .then(function (response) {
+      //           Cookies.set('token', response.data.data.token);
+      //           setToken(response.data.data.token);
+      //           console.log(response.data);
+      //         })
+      //         .catch(console.log)
+      //     })
+      // }
     }
-    else{
-      axios.post('https://api.suiecosystem.top/api/authuser', {
-        suiwallet: wallet.account.address
-      })
-      .then(function (response) {
-        Cookies.set('token', response.data.data.token);
-        setToken(response.data.data.token);
-        console.log(response.data);
-        
-      })
-      .catch(console.log)
-    }
-  }
   }, [wallet.account?.address])
-  
+
   // useEffect(() => {
   //   if (!wallet.connected) return;
   //   console.log('listen to all change event')
@@ -61,7 +78,7 @@ function App() {
   //     off()
   //   }
   // }, [wallet.connected])
-  
+
   // useEffect(() => {
   //   if (!wallet.connected) return;
   //   console.log('listen to chainChange event only')
@@ -72,21 +89,21 @@ function App() {
   //     off()
   //   }
   // }, [wallet.connected])
-    
-  
+
+
   return (
     <div className="App">
       {walletAdress ? <Nav suiwallet={walletAdress} /> : null}
-      { token || Cookies.get('token') ? 
+      {token || Cookies.get('token') ?
         <div className="main">
           <div className="menu">
-            { listMenu }
+            {listMenu}
             <hr />
           </div>
-          <Tabs/>
+          <Tabs />
         </div>
-      : <Welcome/>
-      }     
+        : <Welcome />
+      }
     </div>
   )
 }
