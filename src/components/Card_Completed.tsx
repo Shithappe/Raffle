@@ -68,13 +68,17 @@ function handleBack(e:any){
 }
   
   return (
-    <div className="main_card">
+    <div className="main_card_С">
       {/* front */}
       <div className="front">
       <div className={cardClass}>
         <div className="image_card">
         <img className="big_img" src={data.data.img} alt="" />
           <img className="small_img" src={data.data.logo} alt="" />
+          <div className="social">
+              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
+            </div>
         </div>
         <div className="content_card">
           <div className="title_card">
@@ -85,10 +89,7 @@ function handleBack(e:any){
             <span>Amount: {data.data.amount}</span>
             <span>Will be winner: {data.data.amount}</span>
             <span>Reward type: {data.data.gift_type}</span>
-            <div className="social">
-              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
-              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
-            </div>
+            
 
         </div>
       <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>

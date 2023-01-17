@@ -4,7 +4,7 @@ import { useWallet } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
 import Nav from './components/Nav';
 import Tabs from './components/Tabs';
-import Welcome from './components/Welcome';
+import Welcome from './components/WelcomeVideo';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -19,6 +19,8 @@ function App() {
 
 
   useEffect(() => {
+    console.log(document.getElementsByClassName('wkit-connected-button'));
+
     if (wallet.account?.address) {
       setWalletAdress(String(wallet.account?.address));
       Cookies.set('suiwallet', String(wallet.account?.address));

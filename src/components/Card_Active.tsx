@@ -86,21 +86,24 @@ function hendleJoin(e:any){
            <div className="image_card">
           <img className="big_img" src={data.data.img} alt="" />
           <img className="small_img" src={data.data.logo} alt="" />
+          <div className="social">
+              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
+              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+            </div>
+
         </div>
-        <div className="content_card">
+        <div className="active_card content_card ">
         <div className="title_card">
           <span>Public</span>
+
           <h2>{data.data.title}</h2>
         </div>
           <span>{data.data.description}</span>
 
-          <span>Amount: {data.data.amount}</span>
-          <span>Will be winner: {data.data.amount}</span>
-          <span>Reward type: {data.data.gift_type}</span>
-          <div className="social">
-            <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
-            <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
-          </div>
+          <span>Amount: {data.data.amount} {data.data.gift_type}</span>
+          {/* <span>Will be winner: {data.data.amount}</span> */}
+          {/* <span>Reward type: {data.data.gift_type}</span> */}
+        
           <div className="time">
               <div className="timer" role="timer">
               <div className="box">
