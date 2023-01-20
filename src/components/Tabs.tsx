@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Card_Soon from './Card_Soon';
 import Card_Active from './Card_Active';
 import Card_Completed from './Card_Completed';
 import Cookies from 'js-cookie';
 
 function Tabs() {
     const [data, setData] = useState([]);
+    const [dataSoon, setDataSoon] = useState([]);
     const [tab, setTab] = useState('active');
     const [URL, setURL] = useState('https://api.suiecosystem.top/api/raffle/active');
     
 
     useEffect(()=>{
         let time = 1000;
-        if (Cookies.get("token")) time = 0
+        // if (Cookies.get("token")) time = 0
 
         setTimeout(() => {
             const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
@@ -21,6 +23,14 @@ function Tabs() {
                 .then((response)=>{
                     setData(response.data);
                 })
+            if (tab == 'active'){
+                axios.get('https://api.suiecosystem.top/api/raffle/soon', { headers })
+                .then((response)=>{
+                    setDataSoon(response.data);
+                    console.log(response.data);
+                    
+                })
+            }
            }, time);
     }, [URL]);
     
@@ -47,7 +57,8 @@ function Tabs() {
             { tab == 'active' 
                 ? 
                 <div className="cards">
-                    {data?.map((dataCard:any) => <Card_Active data={dataCard}/>)}
+                    {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)}
+                    {dataSoon?.map((dataCard:any) => <Card_Soon data={dataCard}/>)}
                 </div>
                 :
                 <div className="cards">

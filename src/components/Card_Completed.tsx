@@ -55,8 +55,7 @@ function hendleJoin(e:any){
   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
   axios.get(`https://api.suiecosystem.top/api/raffle/winners/${data.data.id}`, { headers })
   .then((response)=>{
-    console.log(response.data);
-    
+    // console.log(response.data);
     setWinners(response.data)
   })
   .catch(console.log)
@@ -76,8 +75,8 @@ function handleBack(e:any){
         <img className="big_img" src={data.data.img} alt="" />
           <img className="small_img" src={data.data.logo} alt="" />
           <div className="social">
-              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
-              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
+              <a href={data.data.twitter} target="_blank"><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+              <a href={data.data.discord} target="_blank"><img src={discord_logo} alt="" /></a>
             </div>
         </div>
         <div className="content_card">
@@ -86,9 +85,9 @@ function handleBack(e:any){
             <h2>{data.data.title}</h2>
           </div>
             <span>{data.data.description}</span>
-            <span>Amount: {data.data.amount}</span>
-            <span>Will be winner: {data.data.amount}</span>
-            <span>Reward type: {data.data.gift_type}</span>
+            <span>Amount: {data.data.amount} {data.data.gift_type}</span>
+            {/* <span>Will be winner: {data.data.amount}</span> */}
+            {/* <span>Reward type: {data.data.gift_type}</span> */}
             
 
         </div>

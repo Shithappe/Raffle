@@ -32,6 +32,7 @@ hr{
   font-weight: 600;
   background-color: rgba(123, 63, 219, 0.866);
   border-radius: 5px;
+  cursor: pointer;
 }
 .wkit-button{
   font-size: 28px;
@@ -62,12 +63,27 @@ hr{
   transition: all 0.2s ease-in-out;
 }
 
+.nav_title h1 span{
+  color: #fff;
+  background-color: #000;
+  padding: 1px 5px;
+  border-radius: 15px;
+}
+.nav_title p{
+  position: relative;
+  top: -20px;
+  font-size: smaller;
+  padding: 0px 5px;
+  border-radius: 10px;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+}
+
 .nav_title{
   display: flex;
   flex-direction: row;
   align-items: baseline;
 }
-.nav_title span{
+/* .nav_title span{
   font-size: 24px;
 }
 .nav_title span::after{
@@ -81,7 +97,7 @@ hr{
   padding: 3px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
-}
+} */
 
 
 :root {
@@ -90,7 +106,7 @@ hr{
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -265,6 +281,7 @@ nav h1{
   margin: .1em 0;
 }
 .card .content_card{
+  height: 220px;
   width: 270px;
   display: flex;
   flex-direction: column;
@@ -365,6 +382,7 @@ margin: 5px 0;
 .winner{
   margin: 10px 0;
 }
+
 
 .timer {
   display: flex;
@@ -618,7 +636,6 @@ video{
 }
 
 .screen2{ 
-  /* padding: 100px 0; */
   margin: 100px 0;
 
   display: flex;
@@ -629,10 +646,12 @@ video{
 iframe{
   width: 400px;
   height: 600px;
-  /* position: relative;
-  top: -600px;
-  left: 250px; */
   border: none;
+  background-color: #d6e4ff;
+}
+iframe *{
+  background-color: #d6e4ff;
+
 }
 
 .screen2 .text_welcome{
@@ -653,6 +672,17 @@ iframe{
   width: 600px;
 }
 
+.for3d{
+  height: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: center / contain no-repeat url(./assets/bg_3d.png);
+}
+
+.welcome_video .screen3 h1{
+  color: #1a1a1a;
+}
 
 
 .screen3 {
@@ -672,7 +702,7 @@ iframe{
 .screen3_main *{
   margin: 0 20px 0 0;
 }
-.screen3 img{
+.suport img{
   height: 100px;
 }
 
@@ -696,23 +726,70 @@ iframe{
   width: 100px;
   margin: 5px 0px;
 }
-.contacts img{
+.in_contacts img{
   height: 40px;
   border-radius: 15%;
-  /* margin: 0 0px; */
 }
 
 .screen3 hr{
-  /* height: 120px; */
   width: 2px;
   color: #000;
 }
 
+.welcome_video .in_contacts{
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  z-index: 5;
+}
+.welcome_video .in_contacts img{
+  filter: invert(1);
+  margin: 5px;
+  height: 35px;
+}
+
 .welcome_video .container_welcome .wkit-button{
+  padding: 20px 28px;
+  font-size: 30px;
+  border-radius: 10px;
   color: #2b2b2b;
-  background-color: #e0e0e0;
+  background-color: rgb(223, 228, 241);
 }
 
 .welcome_video .container_welcome h1{margin: 50px;}
 .welcome_video .container_welcome h2{margin: 20px 0;}
 .welcome_video .container_welcome h3{margin: 20px;}
+
+#switch_welcome{
+  z-index: 5;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 10px;
+  font-size: medium;
+  color: #1a1a1a;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 22px 0px;
+  transition: ease-in-out .1s;
+}
+#switch_welcome:hover{
+  transform: scale(1.03);
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 22px 0px;
+}
+
+.logout_button{
+  color: #1a1a1a;
+  font-weight: normal;
+  background-color: rgba(10, 14, 34, .2);
+  transition: ease-in-out .2s;
+}
+.logout_button:hover{
+  transform: scale(1.05);
+  background-color: rgba(10, 14, 34, .3);
+}

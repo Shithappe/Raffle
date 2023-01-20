@@ -70,9 +70,9 @@ function hendleJoin(e:any){
     {
       headers: { Authorization: `Bearer ${Cookies.get("token")}` }
     })
-    .then((response)=>{
-      console.log(response.data);
-    })
+    // .then((response)=>{
+    //   console.log(response.data);
+    // })
     .catch(console.log)
   }
 }
@@ -87,8 +87,8 @@ function hendleJoin(e:any){
           <img className="big_img" src={data.data.img} alt="" />
           <img className="small_img" src={data.data.logo} alt="" />
           <div className="social">
-              <a href={data.data.discord}><img src={discord_logo} alt="" /></a>
-              <a href={data.data.twitter}><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+              <a href={data.data.discord} target="_blank"><img src={discord_logo} alt="" /></a>
+              <a href={data.data.twitter} target="_blank"><img id="twitter_logo" src={twitter_logo} alt="" /></a>
             </div>
 
         </div>
@@ -99,18 +99,15 @@ function hendleJoin(e:any){
           <h2>{data.data.title}</h2>
         </div>
           <span>{data.data.description}</span>
-
-          <span>Amount: {data.data.amount} {data.data.gift_type}</span>
-          {/* <span>Will be winner: {data.data.amount}</span> */}
-          {/* <span>Reward type: {data.data.gift_type}</span> */}
-        
-          <div className="time">
+          <span>Amount: {data.data.amount} {data.data.gift_type}</span>        
+          
+      </div>
+      <div className="time">
               <div className="timer" role="timer">
               <div className="box">
                     <p id="day">{days < 10 ? "0" + days : days}</p>
                     <span className="text">Days</span>
                   </div>
-
                   <div className="box">
                     <p id="hour">{hours < 10 ? "0" + hours : hours}</p>
                     <span className="text">Hours</span>
@@ -125,7 +122,6 @@ function hendleJoin(e:any){
                   </div>
               </div>
           </div>
-      </div>
         </div>
         }
         

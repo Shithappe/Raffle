@@ -22,7 +22,7 @@ const Nav = (suiwallet:any) => {
 
     if (localStorage.getItem('discord_data')) {
       let items = JSON.parse(String(localStorage.getItem('discord_data')));
-      {console.log(`https://cdn.discordapp.com/avatars/user_id/${items.discord_id}/${items.avatar}`)}
+      // {console.log(`https://cdn.discordapp.com/avatars/user_id/${items.discord_id}/${items.avatar}`)}
       setDiscord_mode(
         <div className="discord_block">
           {items.avatar ? <img src={`https://cdn.discordapp.com/avatars/${items.discord_id}/${items.avatar}`} /> : <img src={ava} alt={ava} />}
@@ -37,8 +37,10 @@ const Nav = (suiwallet:any) => {
     else{
       if (code)
       axios
-        .get(`http://api.suiecosystem.top/api/callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
+        .get(`https://api.suiecosystem.top/api/callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
         .then((response) => {
+          // console.log(response.data);
+          
             // setData_discord(response.data);
             localStorage.setItem('discord_data', JSON.stringify(response.data));
             
@@ -58,21 +60,37 @@ const Nav = (suiwallet:any) => {
   }, [])
 
   function auth_discord() {
-    location.href = 'https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=http://raffles.suiecosystem.top/&response_type=code&scope=identify%20email%20guilds&prompt=none';
+    location.href = 'https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=https://raffles.suiecosystem.top/&response_type=code&scope=identify%20email%20guilds&prompt=none';
+  }
+
+  function logout(){
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+
+    window.localStorage.clear();
+
+
+    location.href = 'https://raffles.suiecosystem.top/';
   }
 
 
   return (
     <nav>
       <div className="nav_title">
-        <h1>Rafflesui</h1>
+        <h1><span>Sui</span>Raffles</h1>
+        <p>beta</p>
       </div>
       <div className="buttons_nav">
         { (Cookies.get('token')) ? discord_mode : null }
-        {/* <div className="wkit-connected-button"> */}
           <ConnectButton label="Connect Wallet"/>
-          {/* <button className="wkit-connected-button">logout</button> */}
-        {/* </div> */}
+
+        <button className="logout_button discord_button" onClick={logout}>Logout</button>
       </div>
     </nav>
   )

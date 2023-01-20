@@ -4,7 +4,8 @@ import { useWallet } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
 import Nav from './components/Nav';
 import Tabs from './components/Tabs';
-import Welcome from './components/WelcomeVideo';
+// import Welcome from './components/WelcomeVideo';
+import Welcome from './components/Welcome';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -19,7 +20,7 @@ function App() {
 
 
   useEffect(() => {
-    console.log(document.getElementsByClassName('wkit-connected-button'));
+    // console.log(document.getElementsByClassName('wkit-connected-button'));
 
     if (wallet.account?.address) {
       setWalletAdress(String(wallet.account?.address));
@@ -33,7 +34,7 @@ function App() {
           .then(function (response) {
             Cookies.set('token', response.data.data.token);
             setToken(response.data.data.token);
-            console.log(response.data);
+            // console.log(response.data);
 
           })
           .catch(console.log)
@@ -45,7 +46,7 @@ function App() {
               .then(function (response) {
                 Cookies.set('token', response.data.data.token);
                 setToken(response.data.data.token);
-                console.log(response.data);
+                // console.log(response.data);
               })
               .catch(console.log)
         }
