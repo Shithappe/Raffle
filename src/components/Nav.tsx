@@ -14,7 +14,7 @@ const Nav = (suiwallet:any) => {
 
   useEffect(()=>{
     if (suiwallet.suiwallet){
-      setDiscord_mode(<button className="discord_button" onClick={auth_discord}>Discord</button>);
+      setDiscord_mode(<button className="discord_button" onClick={auth_discord}>Connect Discord</button>);
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,7 +22,6 @@ const Nav = (suiwallet:any) => {
 
     if (localStorage.getItem('discord_data')) {
       let items = JSON.parse(String(localStorage.getItem('discord_data')));
-      // {console.log(`https://cdn.discordapp.com/avatars/user_id/${items.discord_id}/${items.avatar}`)}
       setDiscord_mode(
         <div className="discord_block">
           {items.avatar ? <img src={`https://cdn.discordapp.com/avatars/${items.discord_id}/${items.avatar}`} /> : <img src={ava} alt={ava} />}
@@ -60,7 +59,8 @@ const Nav = (suiwallet:any) => {
   }, [])
 
   function auth_discord() {
-    location.href = 'https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=https://raffles.suiecosystem.top/&response_type=code&scope=identify%20email%20guilds&prompt=none';
+    const redirect_uri = 'https://fanciful-nougat-88db18.netlify.app';
+    location.href = `https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=${redirect_uri}/&response_type=code&scope=identify%20email%20guilds&prompt=none`;
   }
 
   function logout(){

@@ -3,26 +3,25 @@ import './App.css'
 import { useWallet } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
 import Nav from './components/Nav';
-import Tabs from './components/Tabs';
-// import Welcome from './components/WelcomeVideo';
+import MenuProvider from './components/MenuProvider';
 import Welcome from './components/Welcome';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
 function App() {
-  const [menu, setMenu] = useState(['Raffls']);
+  const menu =['Raffls', 'White List', 'Championship'];
+  const [menuSelect, setMenuSelect] = useState('Raffls');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
-  const listMenu = menu.map((menu_el: string) => <button>{menu_el}</button>);
+  const listMenu = menu.map((menu_el: string) => <button onClick={handelMenuElement}>{menu_el}</button>);
 
   const wallet = useWallet();
 
 
   useEffect(() => {
-    // console.log(document.getElementsByClassName('wkit-connected-button'));
-
     if (wallet.account?.address) {
+      document.getElementsByClassName("menu")[0].children[0].classList.add("active_tab")
       setWalletAdress(String(wallet.account?.address));
       Cookies.set('suiwallet', String(wallet.account?.address));
 
@@ -34,8 +33,6 @@ function App() {
           .then(function (response) {
             Cookies.set('token', response.data.data.token);
             setToken(response.data.data.token);
-            // console.log(response.data);
-
           })
           .catch(console.log)
       }
@@ -46,7 +43,6 @@ function App() {
               .then(function (response) {
                 Cookies.set('token', response.data.data.token);
                 setToken(response.data.data.token);
-                // console.log(response.data);
               })
               .catch(console.log)
         }
@@ -93,6 +89,14 @@ function App() {
   //   }
   // }, [wallet.connected])
 
+  function handelMenuElement(e: any) {
+
+    let foo = document.getElementsByClassName("menu")[0].children;
+    for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
+    e.currentTarget.classList.add("active_tab");
+
+    setMenuSelect(e.target.innerText)
+}
 
   return (
     <div className="App">
@@ -103,7 +107,8 @@ function App() {
             {listMenu}
             <hr />
           </div>
-          <Tabs />
+          <MenuProvider menuEl={menuSelect}/>
+          {/* <Rafflss /> */}
         </div>
         : <Welcome />
       }

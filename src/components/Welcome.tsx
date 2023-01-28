@@ -71,7 +71,7 @@ function Welcome() {
 
 
             <div className="screen3">
-                <h1>We thank them for their cooperation:</h1>
+                <h1>We gratefully use the technology created by</h1>
                 <div className="screen3_main">
                     <div className="suport">
                         <img src="https://marketing-pages.anu.edu.au/_anu/4/images/logos/2x_anu_logo_small.svg" alt="" />
@@ -94,14 +94,14 @@ function Welcome() {
                     <div className="contacts">
                         <hr />
                         <div className="in_contacts">
-                            <div>
+                            <a href="https://twitter.com/SuiEcosystem" target='_blank'>
                                 <img src={twitter} alt="" />
-                                <span>Twitter</span>
-                            </div>
-                            <div>
+                                <span>Twitter</span>    
+                            </a>
+                            <a href="https://discord.com/invite/suiecosystem" target='_blank'>
                                 <img src={discord} alt="" />
                                 <span>Discord</span>
-                            </div>
+                            </a>
                             <div>
                                 <img src={wp} alt="" />
                                 <span>White paper</span>
@@ -135,11 +135,11 @@ function Welcome() {
 
             <div className="in_contacts">
                 <div>
-                    <img src={twitter} alt="" />
+                    <a href="https://twitter.com/SuiEcosystem" target='_blank'><img src={twitter} alt="" /></a>
                     {/* <span>Twitter</span> */}
                 </div>
                 <div>
-                    <img src={discord} alt="" />
+                    <a href="https://discord.com/invite/suiecosystem" target='_blank'><img src={discord} alt="" /></a>
                     {/* <span>Discord</span> */}
                 </div>
                 <div>
@@ -152,7 +152,7 @@ function Welcome() {
             {/* <div className="thank_them_welcome_video"> */}
 
             <div className="screen3">
-                <h1>We thank them for their cooperation:</h1>
+                <h1>We gratefully use the technology created by</h1>
                 <div className="screen3_main">
                     <div className="suport">
                         <img src="https://marketing-pages.anu.edu.au/_anu/4/images/logos/2x_anu_logo_small.svg" alt="" />

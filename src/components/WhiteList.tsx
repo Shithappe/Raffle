@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react'
 import axios from 'axios';
-import Card_Soon from './Card_Soon';
-import Card_Active from './Card_Active';
-import Card_Completed from './Card_Completed';
 import Cookies from 'js-cookie';
+// import Card_Soon from './Card_Soon';
+// import Card_Active from './Card_Active';
+import Card_Completed from './Card_Completed';
+import WhiteListCard from './WhiteListCard';
 
-function Tabs() {
+function WhiteList() {
     const [data, setData] = useState([]);
     const [dataSoon, setDataSoon] = useState([]);
-    const [tab, setTab] = useState('active');
+    const [tab, setRaffls] = useState('active');
     const [URL, setURL] = useState('https://api.suiecosystem.top/api/raffle/active');
-    
 
+    
     useEffect(()=>{
         let time = 1000;
         // if (Cookies.get("token")) time = 0
@@ -27,8 +28,6 @@ function Tabs() {
                 axios.get('https://api.suiecosystem.top/api/raffle/soon', { headers })
                 .then((response)=>{
                     setDataSoon(response.data);
-                    console.log(response.data);
-                    
                 })
             }
            }, time);
@@ -38,14 +37,17 @@ function Tabs() {
 
     function handelCompleted(e: any) {
         setData([]);
-        setTab(e.target.innerText.toLowerCase());
+        setRaffls(e.target.innerText.toLowerCase());
         setURL(`https://api.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
 
-        let foo = document.querySelectorAll("button"); // можно брать детей родителя?
+        let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
         e.currentTarget.classList.add("active_tab");
     }
 
+
+
+    
   return (
     <div className="tabs_main">
         <div className="tabs">
@@ -57,8 +59,11 @@ function Tabs() {
             { tab == 'active' 
                 ? 
                 <div className="cards">
-                    {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)}
-                    {dataSoon?.map((dataCard:any) => <Card_Soon data={dataCard}/>)}
+                    <WhiteListCard/>
+                    <WhiteListCard/>
+                    <WhiteListCard/>
+                    {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
+                    {/* {dataSoon?.map((dataCard:any) => <Card_Soon data={dataCard}/>)} */}
                 </div>
                 :
                 <div className="cards">
@@ -71,4 +76,4 @@ function Tabs() {
   )
 }
 
-export default Tabs
+export default WhiteList

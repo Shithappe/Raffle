@@ -2,9 +2,16 @@ import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png
 import discord_logo from "../assets/discord.png";
 
 function Card_Soon(data:any) {
-  
-  return (
-    <div className="main_card_С">
+  const getTime = (deadline:any) => {
+    const time = Date.parse(deadline) - Date.now();    
+    
+    console.log(Math.floor(time / (1000 * 60 * 60 * 24)));
+    if (Math.floor(time / (1000 * 60 * 60 * 24)) > 30) return "Coming soon"
+    else return deadline;
+  };
+      
+      return (
+        <div className="main_card_С">
       <div className="front">
       <div className='card inactive_card'>
         <div className="image_card">
@@ -21,8 +28,10 @@ function Card_Soon(data:any) {
             <h2>{data.data.title}</h2>
           </div>
             <span>{data.data.description}</span>
-            <span>Amount: {data.data.amount} {data.data.gift_type}</span>
-            <span>Start date: {data.data.start_date}</span>
+            <div className="adding_info_card">
+              <span>Start date: {getTime(data.data.start_date)}</span>
+              <span><b>Amount: {data.data.amount} {data.data.gift_type}</b></span>
+            </div>
         </div>
 
       <button className="join_button" disabled>Сoming soon</button>

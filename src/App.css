@@ -183,9 +183,10 @@ nav h1{
 }
 
 .main .menu{
-  width: 10rem;
+  width: 12rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 0 2rem 0 0;
   gap: .5rem;
   font-size: large;
@@ -194,7 +195,7 @@ nav h1{
 .main .menu button, .tab{
   height: 1.5em;
   border: none;
-  margin: 0 2.5rem 15px 1em;
+  margin: 0 2.5rem 15px .5em;
   padding: 3px 0px;
   font-size: 1.2em;
   color: rgb(53, 53, 53);
@@ -202,6 +203,7 @@ nav h1{
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
   border-radius: 0;
+  cursor: pointer;
 }
 .main .menu button:hover, .tab:hover{
   transform: scale(1.05);
@@ -458,6 +460,7 @@ margin: 5px 0;
   background-color: rgba(0, 0, 0, 0.514);
 }
 
+.intro img{display: none;}
 .intro{
   z-index: -2;
   max-height: 100vh;
@@ -519,11 +522,13 @@ margin: 5px 0;
 .video{
   position: relative;
   padding-bottom: 56.25%;
+  height: 100%;
+  object-fit: cover;
 }
 
 video{
-  width: 100%;
-  height: auto;
+  /* width: 100%;
+  height: auto; */
 
   position: absolute;
   top: 0;
@@ -686,7 +691,6 @@ iframe *{
 
 
 .screen3 {
-
   background-color: #e9e9f1;
   padding: 40px 30px 20px;
 }
@@ -720,11 +724,13 @@ iframe *{
   cursor: pointer;
 }
 
-.contacts div{
+.contacts div, .contacts a{
   display: flex;
   align-items: center;
   width: 100px;
   margin: 5px 0px;
+  color: #1a1a1a;
+  text-decoration: none;
 }
 .in_contacts img{
   height: 40px;
@@ -792,4 +798,82 @@ iframe *{
 .logout_button:hover{
   transform: scale(1.05);
   background-color: rgba(10, 14, 34, .3);
+}
+
+.adding_info_card{
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+}
+
+@media screen and (max-width: 900px) {
+  nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0 10vw;
+  }
+  .buttons_nav{
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .buttons_nav *{
+    width: 100%;
+  }
+
+  .main{padding: 2rem 0;}
+  .main .menu{
+    display: none;
+  }
+
+  .tabs {
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .screen1_title{margin: 38vh auto;}
+  .screen1 h2, .welcome_video .container_welcome h2{font-size: large; margin-bottom: 0;}
+  .screen1 h1, .welcome_video .container_welcome h1{font-size: larger; margin-bottom: .5rem;}
+  .screen1 h3, .welcome_video .container_welcome h3{font-size: small; text-align: center;}
+  .wkit-button{font-size: medium;}
+
+  #block1{top: 30vh;}
+  #block2{left: 38vw;}
+  #block3{display: none;}
+  #block4{display: none;}
+  #block5{top: 75vh; left: 30vw; transform: scale(1);}
+  #block6{top: 80vh; left: -50vw; transform: scale(1.2);}
+  #block7{display: none;}
+  #block8{display: none;}
+  #block9{display: none;}
+
+  .screen2{flex-direction: column;}
+  .screen2 div{width: auto;}
+  .for3d{height: auto; background: none;}
+  .screen2 .text_welcome{
+    width: auto;
+    padding: 1rem;
+    font-size: medium;
+    border-radius: 0 0 25px 25px;
+  }
+
+  .screen3_main{flex-direction: column;}
+  .suport{display: flex; flex-direction: column;}
+  .suport img, .suport svg{ object-fit: contain; margin-top: 15px;}
+  .contacts hr, .in_contacts span{display: none;}
+  .in_contacts{display: flex; flex-direction: row; margin-top: 15px;}
+
+
+  .intro {
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .welcome_video .container_welcome h2{font-size: large;}
+  .welcome_video .container_welcome h1{margin-top: 1rem; font-size: larger;}
+  .welcome_video .container_welcome h3{margin: 0 2rem; font-size: small; text-align: center;}
+  .welcome_video .container_welcome .wkit-button{font-size: large; padding: 1rem; margin: 1rem;}
 }
