@@ -5,7 +5,7 @@ function Card_Soon(data:any) {
   const getTime = (deadline:any) => {
     const time = Date.parse(deadline) - Date.now();    
     
-    console.log(Math.floor(time / (1000 * 60 * 60 * 24)));
+    // console.log(Math.floor(time / (1000 * 60 * 60 * 24)));
     if (Math.floor(time / (1000 * 60 * 60 * 24)) > 30) return "Coming soon"
     else return deadline;
   };

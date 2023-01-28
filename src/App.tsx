@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import './App.css'
 import { useWallet } from "@suiet/wallet-kit";
 import '@suiet/wallet-kit/style.css';
+import './App.css'
 import Nav from './components/Nav';
 import MenuProvider from './components/MenuProvider';
 import Welcome from './components/Welcome';
@@ -10,13 +10,27 @@ import Cookies from 'js-cookie';
 
 
 function App() {
-  const menu =['Raffls', 'White List', 'Championship'];
+  
+  
+  const menu =['Raffls', 'White List', 'Vote', 'Battle', 'Championship'];
   const [menuSelect, setMenuSelect] = useState('Raffls');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
   const listMenu = menu.map((menu_el: string) => <button onClick={handelMenuElement}>{menu_el}</button>);
 
   const wallet = useWallet();
+
+
+  function getToken(suiwallet:any){
+    axios.post('https://api.suiecosystem.top/api/authuser', {
+          suiwallet
+        })
+          .then(function (response) {
+            Cookies.set('token', response.data.data.token);
+            setToken(response.data.data.token);
+          })
+          .catch(console.log)
+      }
 
 
   useEffect(() => {
@@ -27,43 +41,24 @@ function App() {
 
       if (!Cookies.get('token')) {
 
-        axios.post('https://api.suiecosystem.top/api/authuser', {
-          suiwallet: wallet.account.address
-        })
-          .then(function (response) {
-            Cookies.set('token', response.data.data.token);
-            setToken(response.data.data.token);
-          })
-          .catch(console.log)
-      }
-      else{
-        axios.post('https://api.suiecosystem.top/api/authuser', {
-              suiwallet: wallet.account?.address
-            })
-              .then(function (response) {
-                Cookies.set('token', response.data.data.token);
-                setToken(response.data.data.token);
-              })
-              .catch(console.log)
+        // axios.post('https://api.suiecosystem.top/api/authuser', {
+        //   suiwallet: wallet.account.address
+        // })
+        //   .then(function (response) {
+        //     Cookies.set('token', response.data.data.token);
+        //     setToken(response.data.data.token);
+        //   })
+        //   .catch(console.log)
+          
+          getToken(String(wallet.account?.address));
         }
-      // else {
-      //   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
-      //   axios.get('https://api.suiecosystem.top/api/checkuser', { headers })
-      //     .then((response) => {
-      //       console.log(response.status);
-      //     })
-      //     .catch(() => {
-      //       axios.post('https://api.suiecosystem.top/api/authuser', {
-      //         suiwallet: wallet.account?.address
-      //       })
-      //         .then(function (response) {
-      //           Cookies.set('token', response.data.data.token);
-      //           setToken(response.data.data.token);
-      //           console.log(response.data);
-      //         })
-      //         .catch(console.log)
-      //     })
-      // }
+
+      else {
+        const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
+        axios.get('https://api.suiecosystem.top/api/checkuser', { headers })
+          .then((response) => { console.log(response.status); })
+          .catch(() => { getToken(String(wallet.account?.address)) })
+      }
     }
   }, [wallet.account?.address])
 
@@ -111,10 +106,10 @@ function App() {
           {/* <Rafflss /> */}
         </div>
         : <Welcome />
+        // : <span>awd</span>
       }
     </div>
   )
 }
 
 export default App
-

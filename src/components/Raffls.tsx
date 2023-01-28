@@ -14,7 +14,7 @@ function Raffls() {
 
     useEffect(()=>{
         let time = 1000;
-        // if (Cookies.get("token")) time = 0
+        // if (Cookies.get("token")) time = 0;
 
         setTimeout(() => {
             const headers = { Authorization: `Bearer ${Cookies.get("token")}` };

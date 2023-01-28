@@ -46,6 +46,17 @@ function WhiteList() {
     }
 
 
+    const test_data = [
+        {
+            title: 'title',
+            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
+        },
+        {
+            title: 'title1',
+            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
+        },
+    ]
+
 
     
   return (
@@ -59,11 +70,8 @@ function WhiteList() {
             { tab == 'active' 
                 ? 
                 <div className="cards">
-                    <WhiteListCard/>
-                    <WhiteListCard/>
-                    <WhiteListCard/>
                     {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
-                    {/* {dataSoon?.map((dataCard:any) => <Card_Soon data={dataCard}/>)} */}
+                    {test_data?.map((dataCard:any) => <WhiteListCard data={dataCard}/>)}
                 </div>
                 :
                 <div className="cards">
