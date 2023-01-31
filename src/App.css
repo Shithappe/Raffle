@@ -154,8 +154,22 @@ button{
   box-shadow: 0 0 .5em 0 #919191;
   transform: scale(1.01);
   background-color: #1a1a1a;
-  }
-
+}
+.joined_button{
+  width: 100%;
+  position: relative;
+  color:#2b2b2b;
+  border: none;
+  border-radius: 0 0 1rem 1rem;
+  background: transparent;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0 auto;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  color: rgb(247, 247, 247);
+  background-color: green;
+}
 
 nav{
   display: flex;

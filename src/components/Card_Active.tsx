@@ -7,20 +7,14 @@ import discord_logo from "../assets/discord.png";
 function Card_Active(data: any) {
   const [blockCard, setBlockCard] = useState(false);
   const [active, setActive] = useState(true);
+  const [name_button, setName_button] = useState('Join');
   const [cardClass, setCardClass] = useState('card');
-
-  // data.data.status = '1'
-  const name_button = data.data.status == '0' ? 'Join' : 'See winers';
-
-
-  // console.log(data.data);
-
+  const [join_button, setJoin_button] = useState(<button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>);
 
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
 
   const deadline = data.data.end_date;
 
@@ -41,10 +35,11 @@ function Card_Active(data: any) {
 
 
   useEffect(() => {
-    if (data.data.status != 0) {
-      setActive(false);
-      setCardClass('card inactive_card');
+
+    if (data.data.join === 'true') {
+      setJoin_button(<button className="joined_button" disabled>Joined</button>)
     }
+    
   }, []);
 
 
@@ -124,8 +119,8 @@ function Card_Active(data: any) {
           </div>
         }
 
-
-        <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>
+        { join_button }
+        {/* <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button> */}
       </div>
     </div>
   )

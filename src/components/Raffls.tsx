@@ -22,6 +22,8 @@ function Raffls() {
             
             axios.get(URL, { headers })
                 .then((response)=>{
+                    console.log(response.data);
+                    
                     setData(response.data);
                 })
             if (tab == 'active'){
