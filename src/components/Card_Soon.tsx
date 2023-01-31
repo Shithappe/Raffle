@@ -5,14 +5,11 @@ function Card_Soon(data:any) {
   const getTime = (deadline:any) => {
     const time = Date.parse(deadline) - Date.now();    
     
-    // console.log(Math.floor(time / (1000 * 60 * 60 * 24)));
     if (Math.floor(time / (1000 * 60 * 60 * 24)) > 30) return "Coming soon"
     else return deadline;
   };
       
       return (
-        <div className="main_card_С">
-      <div className="front">
       <div className='card inactive_card'>
         <div className="image_card">
         <img className="big_img" src={data.data.img} alt="" />
@@ -35,8 +32,6 @@ function Card_Soon(data:any) {
         </div>
 
       <button className="join_button" disabled>Сoming soon</button>
-    </div>
-      </div>
     </div>
   )
 }

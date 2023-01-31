@@ -10,13 +10,12 @@ import Cookies from 'js-cookie';
 
 
 function App() {
-  
-  
-  const menu =['Raffls', 'White List', 'Vote', 'Battle', 'Championship'];
-  const [menuSelect, setMenuSelect] = useState('Raffls');
+  // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
+  const menu =['Raffles', 'White List'];
+  const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
-  const listMenu = menu.map((menu_el: string) => <button onClick={handelMenuElement}>{menu_el}</button>);
+  const listMenu = menu.map((menu_el: string) => <button className='listMenu_El' onClick={handelMenuElement}>{menu_el}</button>);
 
   const wallet = useWallet();
 
@@ -27,7 +26,7 @@ function App() {
           // suiwallet: wallet.account.address
         })
           .then(function (response) {
-            console.log("set new token");
+            // console.log("set new token");
             
             Cookies.set('token', response.data.data.token);
             setToken(response.data.data.token);
@@ -77,7 +76,7 @@ function App() {
 
   function handelMenuElement(e: any) {
 
-    let foo = document.getElementsByClassName("menu")[0].children;
+    let foo = document.getElementsByClassName("menuEl")[0].children;
     for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
     e.currentTarget.classList.add("active_tab");
 
@@ -88,16 +87,17 @@ function App() {
     <div className="App">
       {walletAdress ? <Nav suiwallet={walletAdress} /> : null}
       {token || Cookies.get('token') ?
+
         <div className="main">
           <div className="menu">
-            {listMenu}
+            <div className="menuEl">
+              {listMenu}
+            </div>
             <hr />
           </div>
           <MenuProvider menuEl={menuSelect}/>
-          {/* <Rafflss /> */}
         </div>
         : <Welcome />
-        // : <span>awd</span>
       }
     </div>
   )

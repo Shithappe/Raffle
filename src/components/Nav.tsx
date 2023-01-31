@@ -60,9 +60,9 @@ const Nav = (suiwallet:any) => {
 
   function auth_discord() {
     // const redirect_uri = 'https://127.0.0.1:5173';
-    const redirect_uri = 'https://fanciful-nougat-88db18.netlify.app';
-    // const redirect_uri = 'https://raffles.suiecosystem.top/';
-    location.href = `https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=${redirect_uri}/&response_type=code&scope=identify%20email%20guilds&prompt=none`;
+    // const redirect_uri = 'https://fanciful-nougat-88db18.netlify.app';
+    const redirect_uri = 'https://raffles.suiecosystem.top/';
+    location.href = `https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=${redirect_uri}&response_type=code&scope=identify%20email%20guilds&prompt=none`;
   }
 
   function logout(){
