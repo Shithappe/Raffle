@@ -8,7 +8,6 @@ function Card_Active(data: any) {
   const [blockCard, setBlockCard] = useState(false);
   const [active, setActive] = useState(true);
   const [name_button, setName_button] = useState('Join');
-  const [cardClass, setCardClass] = useState('card');
   const [join_button, setJoin_button] = useState(<button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>);
 
   const [days, setDays] = useState(0);
@@ -36,7 +35,7 @@ function Card_Active(data: any) {
 
   useEffect(() => {
 
-    if (data.data.join === 'true') {
+    if (data.data.join) {
       setJoin_button(<button className="joined_button" disabled>Joined</button>)
     }
     
@@ -63,7 +62,6 @@ function Card_Active(data: any) {
           headers: { Authorization: `Bearer ${Cookies.get("token")}` }
         })
         .then(() => {
-          // console.log(response.data);
           e.target.innerHTML = 'Joined';
           e.target.style.backgroundColor = 'green';
         })
@@ -73,7 +71,7 @@ function Card_Active(data: any) {
 
   return (
     <div className="main_card">
-      <div className={cardClass}>
+      <div className='card'>
         {blockCard ? <div className="blockedCard"><h1>You need</h1><h1>auth with</h1><h1 id="ls">Discord</h1></div>
           :
           <div>

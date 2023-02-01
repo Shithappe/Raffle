@@ -48,10 +48,14 @@ function WhiteList() {
 
     const test_data = [
         {
+            img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
+            logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
             title: 'title',
             description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
         },
         {
+            img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
+            logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
             title: 'title1',
             description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
         },

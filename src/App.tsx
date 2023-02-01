@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
-  const menu =['Raffles', 'White List'];
+  const menu =['Raffles'];
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');

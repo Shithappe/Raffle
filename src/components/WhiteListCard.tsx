@@ -1,6 +1,9 @@
+import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png";
+import discord_logo from "../assets/discord.png";
+
 
 function WhiteListCard({ data }: { data: any }) {
     const [blockCard, setBlockCard] = useState(false);
@@ -36,25 +39,33 @@ function WhiteListCard({ data }: { data: any }) {
     
     
     return (
-        <div className="main_card">
-            <div className={cardClass}>
-                {blockCard ? <div className="blockedCard"><h1>You need</h1><h1>auth with</h1><h1 id="ls">Discord</h1></div>
-                    :
-                    <div>
-                        <div className="content_card_wl ">
-                            <div className="title_card">
-                                <span>Public</span>
-                                <h2>{data.title}</h2>
-                            </div>
-                            <span>{data.description}</span>
-                        </div>
-                    </div>
-                }
-                <button className="join_button" disabled={!active} onClick={hendleJoin}>Connect to White list (WL)</button>
-            </div>
-        </div>
+      <div className="main_card">
+      <div className='card'>
+        {blockCard ? <div className="blockedCard"><h1>You need</h1><h1>auth with</h1><h1 id="ls">Discord</h1></div>
+          :
+          <div>
+            <div className="image_card">
+              <img className="big_img" src={data.img} alt="" />
+              <img className="small_img" src={data.logo} alt="" />
+              <div className="social">
+                <a href='#' target="_blank"><img src={discord_logo} alt="" /></a>
+                <a href='#' target="_blank"><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+              </div>
 
-    )
+            </div>
+            <div className="active_card content_card ">
+              <div className="title_card">
+                {/* <span>Public</span> */}
+                <h2>{data.title}</h2>
+              </div>
+              <span>{data.description}</span>
+            </div>
+          </div>
+        }
+
+        <button className="join_button" onClick={hendleJoin}>Join to White List</button>
+      </div>
+    </div>    )
 }
 
 export default WhiteListCard
