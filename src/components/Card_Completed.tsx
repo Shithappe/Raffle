@@ -55,10 +55,11 @@ function hendleJoin(e:any){
   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
   axios.get(`https://api.suiecosystem.top/api/raffle/winners/${data.data.id}`, { headers })
   .then((response)=>{
-    // console.log(response.data);
-    setWinners(response.data)
+    setWinners(response.data);
   })
   .catch(console.log)
+  
+  console.log(e.target.parentNode.parentNode.parentNode.lastChild);
 }
 
 function handleBack(e:any){

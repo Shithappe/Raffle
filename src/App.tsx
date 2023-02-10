@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
-  const menu =['Raffles'];
+  const menu =['Raffles', 'White List', 'Battle'];
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
@@ -26,12 +26,10 @@ function App() {
           // suiwallet: wallet.account.address
         })
           .then(function (response) {
-            // console.log("set new token");
-            
             Cookies.set('token', response.data.data.token);
             setToken(response.data.data.token);
           })
-          .catch(console.log)
+          .catch(() => { console.log('угадал2');  })
       }
 
 

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 
+
 html {
   scroll-behavior: smooth;
 }
@@ -80,21 +81,6 @@ body::-webkit-scrollbar {
   flex-direction: row;
   align-items: baseline;
 }
-/* .nav_title span{
-  font-size: 24px;
-}
-.nav_title span::after{
-  position: relative;
-  bottom: 5px;
-  left: 5px;
-  content: ' ';
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-} */
 
 
 :root {
@@ -307,22 +293,14 @@ nav h1{
   position: relative;
   top: -110px;
   padding: 0 40px 0rem;
-  /* margin-top: -100px; */
 }
 
-.active_card{
-  margin-bottom: -140px;
-}
-.card .content_card_active > *, .card .content_card *, .timer > *{
-margin: 5px 0;
-}
+.active_card{  margin-bottom: -140px;}
+.card .content_card_active > *, .card .content_card *, .timer > *{margin: 5px 0;}
 .inactive_card > .content_card{margin-bottom: -80px;}
-.inactive_card{
-  background-color: rgb(232, 234, 238);
-}
-.inactive_card button:hover{
-  transform: none;
-}
+.front .content_card{margin-bottom: -80px;}
+.inactive_card{background-color: rgb(232, 234, 238);}
+.inactive_card button:hover{transform: none;}
 
 
 .active_tab{
@@ -337,11 +315,8 @@ margin: 5px 0;
 
 .front,
 .back{
-  /* width: 100%; */
-  /* height: 400px; */
   overflow: hidden;
   backface-visibility: hidden;
-  /* position: absolute; */
   transition: transform .6s linear;
 }
 
@@ -350,11 +325,11 @@ margin: 5px 0;
 }
 
 .back{
-  height: 26.8rem;
+  height: 27.5rem;
   width: 95%;
   transform: perspective(600px) rotateY(180deg);
   position: relative;
-  bottom: 27.9rem;
+  bottom: 28.5rem;
   left: .5rem;
 
   background-color: rgb(248, 248, 255);
@@ -363,16 +338,18 @@ margin: 5px 0;
   border-radius: 20px;
 }
 .back img{
+  display: none;
   width: 350px;
 }
 
 
 
 .back-content{
-  /* width: 80%; */
+  /* height: 500px; */
   text-align: center;
   color: #333333;
 }
+.back-content h2{padding-bottom: .5rem;}
 .back-content button{
   position: relative;
   left: -9rem;
@@ -386,7 +363,7 @@ margin: 5px 0;
 
 .winners{
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   overflow-y: scroll;
   max-height: 23rem;
   margin-top: -3rem;
@@ -912,4 +889,143 @@ iframe *{
 }
 .listMenu_El{
   margin-right: 0;
+}
+.vote{margin: 10px 0;}
+.votEl{
+  margin: 5px 0;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgb(142, 142, 142, .5);
+}
+
+.card .battle_content_card{
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -110px;
+  padding: 0 40px 0;
+  margin: 0 0 -100px;
+}
+
+.cardofproject{
+  position: absolute;
+  display: none;
+}
+.votEl:hover > .cardofproject{
+  display: block;
+  z-index: 4;
+  left: 15rem;
+}
+
+
+
+
+.projectCard{
+  width: 15rem;
+  max-height: 16rem;
+  display: inline-block;
+  margin: 5px 0;
+  padding: 10px 20px 10px;
+  /* background-color: rgb(248, 248, 255); */
+  border: 0.05rem solid #eee;
+  box-shadow: rgba(100, 100, 111, 0.1) 2px 3px 7px 3px;
+  border-radius: 20px;
+  transition: all .5s ease-in-out;
+  font-size: 15px;
+  color: #2b2b2b;
+}
+
+/* .projectCard: > p, .projectCard:focus > .project_social_media {
+  display: block;
+} */
+.projectCard:hover{
+  /* transform: translateY(-5px); */
+  /* background-color: rgb(251, 251, 255); */
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 22px 0px;
+}
+.projectCard p {
+  display: none;
+  /* height: 6rem; */
+  font-size: 14px;
+}
+.projectCard_title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.projectCard_title h3{margin: 5px 0 0;}
+.projectCard_title img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  margin-right: 5px;
+}
+.block_categories_in_card {
+  display: -webkit-box;
+  width: 100%;
+}
+.categories_in_card {
+  font-size: 12px;
+  padding: 0 2px 0 0;
+  margin: 0 2px 0 0;
+  border-radius: 5px;
+  color: #2a2a2ac1;
+}
+.project_social_media{display: none;}
+.project_social_media img {
+  margin: 0 3px 2px 3px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+}
+
+.battle .image_card .social{
+  bottom: 50px;
+}
+.card .battle_content_card{
+  top: -40px;
+  margin: 0 0 -35px;
+}
+
+.modal{
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, .3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: scale(0);
+}
+
+.modal_active{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, .3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+}
+
+.modal_content{
+  padding: 20px;
+  border-radius: 15px;
+  /* background-color: white; */
+}
+
+.selectedProject{
+  background-color: #7d91a0;
 }
