@@ -1029,3 +1029,74 @@ iframe *{
 .selectedProject{
   background-color: #7d91a0;
 }
+
+
+.championship{
+  display: none;
+  flex-direction: row;
+  padding: 0 2vh;
+  gap: 10px;
+}
+
+.collum{
+  width: 8vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* gap: 2%; */
+}
+
+.groups{
+  width: 18vw;
+}
+
+.group{
+  /* height: 25%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px 0;
+  padding: 12px 50px 5px 10px;
+  gap: 5px;
+  background-color: #d8d8d8;
+  border-radius: 25px;
+}
+
+.vs{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: center;
+  color: #2a2a2ac1;
+}
+
+.final{
+  color:rgb(53, 53, 53);
+  text-align: center;
+  margin-top: 25vh;
+  flex-grow: 3;
+}
+
+.member{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: .5em;
+}
+.member img{
+  width: 20px;
+  border-radius: 50%;
+  box-shadow: rgba(100, 100, 111, 0.1) 2px 3px 7px 3px;
+}
+
+.name_group{
+  position: relative;
+  right: 0px;
+  top: 0px;
+  height: 10px;
+  transform: rotate(90deg);
+
+}

@@ -7,11 +7,13 @@ import MenuProvider from './components/MenuProvider';
 import Welcome from './components/Welcome';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import Championship from './components/Championship';
 
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
   const menu =['Raffles', 'White List', 'Battle'];
+  // const menu =['Raffles'];
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
@@ -84,6 +86,7 @@ function App() {
   return (
     <div className="App">
       {walletAdress ? <Nav suiwallet={walletAdress} /> : null}
+      <Championship/>
       {token || Cookies.get('token') ?
 
         <div className="main">
@@ -97,7 +100,7 @@ function App() {
         </div>
         : <Welcome />
       }
-    </div>
+      </div>
   )
 }
 

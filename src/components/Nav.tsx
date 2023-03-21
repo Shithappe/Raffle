@@ -8,6 +8,7 @@ import ava from '../assets/ava.png';
 
 const Nav = (suiwallet:any) => {
   const [discord_mode, setDiscord_mode] = useState(<div></div>);
+  const [ch_view, setCh_view] = useState(false);
   // const [data_discord, setData_discord] = useState({username: '', avatar: ''});
 
 
@@ -81,13 +82,28 @@ const Nav = (suiwallet:any) => {
     location.href = 'https://raffles.suiecosystem.top/';
   }
 
+  function hendleCh() {
+    setCh_view(!ch_view);
+
+    if (ch_view){
+      document.getElementsByClassName('main')[0].style = 'display: none;';
+      document.getElementsByClassName('championship')[0].style = 'display: flex;';
+    }
+    else{
+      document.getElementsByClassName('championship')[0].style = 'display: none;';
+      document.getElementsByClassName('main')[0].style = 'display: flex;';
+    }
+  }
+
 
   return (
     <nav>
       <div className="nav_title">
         <h1><span>Sui</span>Raffles</h1>
         <p>beta</p>
+        <button onClick={hendleCh}>ch</button>
       </div>
+
       <div className="buttons_nav">
         { (Cookies.get('token')) ? discord_mode : null }
           <ConnectButton label="Connect Wallet"/>

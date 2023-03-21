@@ -10,9 +10,6 @@ function Card_Completed(data:any) {
   const [cardClass, setCardClass] = useState('card');  
   
   const name_button = data.data.status == '0' ? 'Calculation of results...' : 'See winners';
-
-
-  // console.log(data.data);
   
   
   
