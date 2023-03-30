@@ -12,8 +12,8 @@ import Championship from './components/Championship';
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
-  const menu =['Raffles', 'White List', 'Battle'];
-  // const menu =['Raffles'];
+  // const menu =['Raffles', 'White List', 'Battle'];
+  const menu =['Raffles'];
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');

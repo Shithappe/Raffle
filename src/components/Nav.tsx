@@ -38,7 +38,7 @@ const Nav = (suiwallet:any) => {
       if (code)
       axios
         .get(`https://api.suiecosystem.top/api/callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
-        .then((response) => {
+        .then((response:any) => {
           // console.log(response.data);
           
             // setData_discord(response.data);
@@ -85,14 +85,14 @@ const Nav = (suiwallet:any) => {
   function hendleCh() {
     setCh_view(!ch_view);
 
-    if (ch_view){
-      document.getElementsByClassName('main')[0].style = 'display: none;';
-      document.getElementsByClassName('championship')[0].style = 'display: flex;';
-    }
-    else{
-      document.getElementsByClassName('championship')[0].style = 'display: none;';
-      document.getElementsByClassName('main')[0].style = 'display: flex;';
-    }
+    // if (ch_view){
+    //   document.getElementsByClassName('main')[0].style = 'display: none;';
+    //   document.getElementsByClassName('championship')[0].style = 'display: flex;';
+    // }
+    // else{
+    //   document.getElementsByClassName('championship')[0].style = 'display: none;';
+    //   document.getElementsByClassName('main')[0].style = 'display: flex;';
+    // }
   }
 
 
