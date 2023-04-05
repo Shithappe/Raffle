@@ -12,8 +12,8 @@ import Championship from './components/Championship';
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
-  // const menu =['Raffles', 'White List', 'Battle'];
-  const menu =['Raffles'];
+  let menu =['Raffles'];   if (localStorage.getItem('discord_data') && menu.length < 2) menu.push('White List');
+  // const menu =['Raffles'];
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');

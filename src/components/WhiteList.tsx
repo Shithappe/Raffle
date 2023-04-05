@@ -10,12 +10,12 @@ function WhiteList() {
     const [data, setData] = useState([]);
     const [dataSoon, setDataSoon] = useState([]);
     const [tab, setRaffls] = useState('active');
-    const [URL, setURL] = useState('https://api.suiecosystem.top/api/raffle/active');
+    const [URL, setURL] = useState('https://api.suiecosystem.top/api/wl/active');
 
     
     useEffect(()=>{
         let time = 1000;
-        // if (Cookies.get("token")) time = 0
+        if (Cookies.get("token")) time = 0
 
         setTimeout(() => {
             const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
@@ -38,29 +38,12 @@ function WhiteList() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`https://api.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
+        setURL(`https://api.suiecosystem.top/api/wl/${e.target.innerText.toLowerCase()}`);
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
         e.currentTarget.classList.add("active_tab");
     }
-
-
-    const test_data = [
-        {
-            img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-            logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-            title: 'title',
-            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        },
-        {
-            img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-            logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-            title: 'title1',
-            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        },
-    ]
-
 
     
   return (
@@ -75,7 +58,7 @@ function WhiteList() {
                 ? 
                 <div className="cards">
                     {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
-                    {test_data?.map((dataCard:any) => <WhiteListCard data={dataCard}/>)}
+                    {data?.map((dataCard:any, index:number) => <WhiteListCard data={dataCard} index={index}/>)}
                 </div>
                 :
                 <div className="cards">

@@ -101,7 +101,7 @@ const Nav = (suiwallet:any) => {
       <div className="nav_title">
         <h1><span>Sui</span>Raffles</h1>
         <p>beta</p>
-        <button onClick={hendleCh}>ch</button>
+        {/* <button onClick={hendleCh}>ch</button> */}
       </div>
 
       <div className="buttons_nav">

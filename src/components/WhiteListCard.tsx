@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png";
 import discord_logo from "../assets/discord.png";
 
 
-function WhiteListCard({ data }: { data: any }) {
+function WhiteListCard({ data, index }: { data: any, index: number }) {
     const [blockCard, setBlockCard] = useState(false);
     const [active, setActive] = useState(true);
     const [cardClass, setCardClass] = useState('card');
+    const [button, setButton] = useState(<button className="join_button" onClick={hendleJoin}>Join to White List</button>);
+
+    useEffect(() => {
+      if (data.join) setButton(
+          <button className="join_button" disabled onClick={hendleJoin}>You have already joined</button>
+      )
+    }, [])
+    
 
     function hendleJoin(e: any) {
         if (!localStorage.getItem('discord_data')) {
@@ -20,23 +28,29 @@ function WhiteListCard({ data }: { data: any }) {
           }, 5000);
         }
         else {
-          axios.post('https://api.suiecosystem.top/api/events/start',
-            {
-              suiwallet: Cookies.get('suiwallet'),
-              raffle_id: data.data.id
-            },
-            {
-              headers: { Authorization: `Bearer ${Cookies.get("token")}` }
-            })
-            .then(() => {
-              // console.log(response.data);
-              e.target.innerHTML = 'Joined';
-              e.target.style.backgroundColor = 'green';
-            })
-            .catch(console.log)
+          if (data.rule)
+            axios.post('https://api.suiecosystem.top/api/wl/reg',
+              {
+                wl_projects_id: String(data.id)
+              },
+              {
+                headers: { Authorization: `Bearer ${Cookies.get("token")}` }
+              })
+              .then(() => {
+                // console.log(response.data);
+                e.target.innerHTML = 'Joined';
+                e.target.style.backgroundColor = 'green';
+              })
+              .catch(console.log)
+          else {
+            document.getElementsByClassName('info_about_role')[index].classList.remove("display-none");
+            // document.getElementsByClassName('display-none')[0].classList.add("info_about_role");
+          }
         }
       }
     
+      console.log(data);
+      
     
     return (
       <div className="main_card">
@@ -55,15 +69,14 @@ function WhiteListCard({ data }: { data: any }) {
             </div>
             <div className="active_card content_card ">
               <div className="title_card">
-                {/* <span>Public</span> */}
                 <h2>{data.title}</h2>
               </div>
               <span>{data.description}</span>
             </div>
+            <div className="display-none info_about_role"><span>You need role:</span> <b>{data.role_name}</b></div>
           </div>
         }
-
-        <button className="join_button" onClick={hendleJoin}>Join to White List</button>
+        {button}
       </div>
     </div>    )
 }

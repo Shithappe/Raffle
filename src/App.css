@@ -1371,3 +1371,14 @@ iframe * {
   box-shadow: rgba(100, 100, 111, 0.1) 2px 3px 7px 3px;
 }
 
+.display-none{
+  visibility: hidden;
+}
+
+.info_about_role{
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+  gap: 5px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
