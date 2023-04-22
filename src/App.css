@@ -260,6 +260,7 @@ nav h1 {
 }
 
 .card {
+  height: min-content;
   margin: 15px;
   color: #2b2b2b;
   background-color: rgb(248, 248, 255);
@@ -1133,9 +1134,14 @@ iframe * {
 }
 
 
+.selectedProject {
+  background-color: #cecece;
+  /* border: 2px solid rgb(255, 0, 0); */
+}
 
 
 .projectCard {
+  /* background: linear-gradient(to right, #d2d2d2 65%, #FFFFFF 0%); */
   width: 15rem;
   max-height: 16rem;
   display: inline-block;
@@ -1184,7 +1190,10 @@ iframe * {
 }
 
 .block_categories_in_card {
-  display: -webkit-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* display: -webkit-box; */
   width: 100%;
 }
 
@@ -1252,11 +1261,6 @@ iframe * {
   border-radius: 15px;
   /* background-color: white; */
 }
-
-.selectedProject {
-  background-color: #7d91a0;
-}
-
 
 .championship {
   display: none;
@@ -1381,4 +1385,15 @@ iframe * {
   z-index: 5;
   gap: 5px;
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* .battle_percent{
+  position: relative;
+  top: -1rem;
+  left: 7rem;
+  text-align: end;
+} */
+
+.w-100{
+  width: 100%;
 }

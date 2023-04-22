@@ -50,13 +50,11 @@ function hendleJoin(e:any){
 
 
   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
-  axios.get(`https://api.suiecosystem.top/api/raffle/winners/${data.data.id}`, { headers })
+  axios.get(`https://api1.suiecosystem.top/api/raffle/winners/${data.data.id}`, { headers })
   .then((response)=>{
     setWinners(response.data);
   })
   .catch(console.log)
-  
-  console.log(e.target.parentNode.parentNode.parentNode.lastChild);
 }
 
 function handleBack(e:any){
@@ -89,7 +87,11 @@ function handleBack(e:any){
             
 
         </div>
-      <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>
+        {!data.data.guild_id ?
+          <button className="join_button" disabled={!active} onClick={hendleJoin}>{name_button}</button>
+        : <div></div>  
+      }
+      
     </div>
       </div>
       <div className="back">

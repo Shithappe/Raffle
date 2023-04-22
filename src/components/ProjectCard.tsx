@@ -1,11 +1,15 @@
-import web from "../assets/safari.png";
-import twitter from "../assets/twitter.png";
-import discord from "../assets/discord_2.png";
+interface ProjectCardProps {
+    data: any;
+    // percent: number;
+    setSelectedProject: any;
+  }
 
-function ProjectCard(data:any) {
+function ProjectCard({ data, setSelectedProject }: ProjectCardProps) {
+    //  console.log(data);
+    
 
     function hendleSelect(e:any){
-        data.setSelectedProject(data.data);
+        setSelectedProject(data);
         let element = e.target;
         while (!element.classList.contains('projectCard')) {
             element = element.parentNode;
@@ -17,21 +21,18 @@ function ProjectCard(data:any) {
     }
     
     return (
-        <div onClick={hendleSelect} className="projectCard">
+        <div onClick={hendleSelect} className="projectCard" style={{
+            background: `linear-gradient(to right, #FFD700 ${data.percent}%, #FFFFFF 0%)`
+          }}>
             <div className="projectCard_title">
-                <img src={data.data.icon} alt="" />
-                <div>
-                    <h3>{data.data.title}</h3>
+                <img src={data.icon} alt="" />
+                <div className="w-100">
+                    <h3>{data.title} </h3>
                     <div className="block_categories_in_card">
-                        <div className="categories_in_card">{data.data.category[0].name}</div>
+                        <div className="categories_in_card">{data.category[0].name}</div>
+                        { data.percent !== undefined && <div>{data.percent}%</div> }
                     </div>
                 </div>
-            </div>
-            <p>{data.data.excerpt}</p>
-            <div className="project_social_media">
-                <a target="_blank" href="#"><img src={web} alt="" /></a>
-                <a target="_blank" href="#"><img src={twitter} alt="" /></a>
-                <a target="_blank" href="#"><img src={discord} alt="" /></a>
             </div>
         </div>
     )

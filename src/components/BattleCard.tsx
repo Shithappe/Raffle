@@ -8,31 +8,80 @@ import ProjectCard from "./ProjectCard";
 
 function BattleCard({ data }: { data: any }) {
   const [blockCard, setBlockCard] = useState(false);
-  const [ProjectData, setProjectData] = useState([]);
+  const [ProjectData, setProjectData] = useState<any[]>([]);
   
-  const [selectedProject, setSelectedProject] = useState({});
+  const [selectedProject, setSelectedProject] = useState<{[key: string]: any}>({});    
 
+  
+  
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const results = [];
 
+      try {
+        const arr = JSON.parse(data.res);
+        const all_voted = [];
+        const empty = [];
 
-  useEffect(()=>{
-    axios.get('https://old.suiecosystem.top/wp-json/api/get_project_by_slug_pagination/all/1/4')
-    .then((response)=>setProjectData(response.data))
-    .catch(console.log)
-  }, [])
+        if (data.join){
+          for (let i = 0; i < data.all_voted.length; i++) all_voted.push(data.all_voted[i].res);
+  
+          for (let i = 0; i < arr.length; i++) {
+            if (all_voted.includes(arr[i])) empty.push({id: arr[i], percent: data.all_voted[all_voted.indexOf(arr[i])].percent});
+            else empty.push(null);
+          }
+        }
+          
+
+        for (let i = 0; i < arr.length; i++) {
+          const response = await axios.get(`https://old.suiecosystem.top/wp-json/api/get_custom_by_id/${arr[i]}`);
+
+          let temp = response.data;
+          if (data.join) empty[i] ? temp.percent = empty[i]?.percent : temp.percent = 0;
+          results.push(temp);
+        }
+        setProjectData(results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();    
+    
+  }, []);
+
 
   function hendleJoin(e: any) {
-    console.log(selectedProject)
     
-    // if (!localStorage.getItem('discord_data')) {
-    //   setBlockCard(true);
-    //   e.target.style.backgroundColor = 'red';
-    //   setTimeout(() => {
-    //     e.target.style.backgroundColor = '#2b2b2b';
-    //     setBlockCard(false);
-    //   }, 5000);
-    // }
-    // else
-    //  setModalActive(true);
+    if (!localStorage.getItem('discord_data')) {
+      setBlockCard(true);
+      e.target.style.backgroundColor = 'red';
+      setTimeout(() => {
+        e.target.style.backgroundColor = '#2b2b2b';
+        setBlockCard(false);
+      }, 5000);
+    }
+    else
+    console.log(data.id);
+    console.log(selectedProject.id);
+    
+    axios.post('https://api.suiecosystem.top/api/resbats/sendvoice',
+        {
+          battle_id: `${data.id}`,
+          res: `${selectedProject.id}`
+        },
+        {
+          headers: { 
+            Authorization: `Bearer ${Cookies.get("token")}`,
+            'Content-Type': 'application/json'
+           }
+        })
+        .then((response) => {
+          console.log(response.data[0]);
+          e.target.innerHTML = 'Voted';
+          e.target.style.backgroundColor = 'green';
+        })
+        .catch(console.log)
   }
 
 
@@ -56,14 +105,17 @@ function BattleCard({ data }: { data: any }) {
               </div>
               <span>{data.description}</span>
               <div className="vote">
-              {ProjectData.map((item:any)=> <ProjectCard setSelectedProject={setSelectedProject} data={item}/>)}
+              {ProjectData.map((item:any)=> <ProjectCard setSelectedProject={setSelectedProject} data={item} />)}
           </div>
             </div>
           </div>
         }
 
-        {/* <Modal active={modalActive} setActive={setModalActive}/> */}
-        <button className="join_button" onClick={hendleJoin} disabled={!selectedProject}>Vote</button>
+        { data.join 
+          ? <button className="join_button" style={{backgroundColor: 'green'}} onClick={hendleJoin} disabled >Voted</button>
+          : <button className="join_button" onClick={hendleJoin} disabled={!selectedProject}>Vote</button>
+        }
+        
       </div >
   )
 }

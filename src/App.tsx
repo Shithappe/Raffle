@@ -12,8 +12,7 @@ import Championship from './components/Championship';
 
 function App() {
   // const menu =['Raffles', 'White List', 'Vote', 'Battle', 'Championship'];
-  let menu =['Raffles'];   if (localStorage.getItem('discord_data') && menu.length < 2) menu.push('White List');
-  // const menu =['Raffles'];
+  let menu =['Raffles', 'Battles'];   if (localStorage.getItem('discord_data') && menu.length < 3) menu.push('White List');
   const [menuSelect, setMenuSelect] = useState('Raffles');
   const [token, setToken] = useState('');
   const [walletAdress, setWalletAdress] = useState('');
@@ -23,7 +22,7 @@ function App() {
 
 
   function getToken(suiwallet:any){
-    axios.post('https://api.suiecosystem.top/api/authuser', {
+    axios.post('https://api1.suiecosystem.top/api/authuser', {
           suiwallet
           // suiwallet: wallet.account.address
         })
@@ -44,7 +43,7 @@ function App() {
 
       else {
         const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
-        axios.get('https://api.suiecosystem.top/api/checkuser', { headers })
+        axios.get('https://api1.suiecosystem.top/api/checkuser', { headers })
           .then((response) => { console.log(response.status); })
           .catch(() => { getToken(String(wallet.account?.address)) })
       }

@@ -13,7 +13,7 @@ function WhiteListCard({ data, index }: { data: any, index: number }) {
 
     useEffect(() => {
       if (data.join) setButton(
-          <button className="join_button" disabled onClick={hendleJoin}>You have already joined</button>
+          <button className="joined_button" disabled onClick={hendleJoin}>You have already joined</button>
       )
     }, [])
     
@@ -29,7 +29,7 @@ function WhiteListCard({ data, index }: { data: any, index: number }) {
         }
         else {
           if (data.rule)
-            axios.post('https://api.suiecosystem.top/api/wl/reg',
+            axios.post('https://api1.suiecosystem.top/api/wl/reg',
               {
                 wl_projects_id: String(data.id)
               },
@@ -62,8 +62,8 @@ function WhiteListCard({ data, index }: { data: any, index: number }) {
               <img className="big_img" src={data.img} alt="" />
               <img className="small_img" src={data.logo} alt="" />
               <div className="social">
-                <a href='#' target="_blank"><img src={discord_logo} alt="" /></a>
-                <a href='#' target="_blank"><img id="twitter_logo" src={twitter_logo} alt="" /></a>
+                <a href={data.discord} target="_blank"><img src={discord_logo} alt="" /></a>
+                <a href={data.twitter} target="_blank"><img id="twitter_logo" src={twitter_logo} alt="" /></a>
               </div>
 
             </div>

@@ -9,7 +9,7 @@ function Battle() {
     const [data, setData] = useState([]);
     const [dataSoon, setDataSoon] = useState([]);
     const [tab, setRaffls] = useState('active');
-    const [URL, setURL] = useState('https://api.suiecosystem.top/api/raffle/active');
+    const [URL, setURL] = useState('https://api.suiecosystem.top/api/getbattle/active');
 
     
     useEffect(()=>{
@@ -22,10 +22,12 @@ function Battle() {
             axios.get(URL, { headers })
                 .then((response)=>{
                     setData(response.data);
+                    // console.log(response.data);
                 })
             if (tab == 'active'){
-                axios.get('https://api.suiecosystem.top/api/raffle/soon', { headers })
+                axios.get('https://api1.suiecosystem.top/api/getbattle/soon', { headers })
                 .then((response)=>{
+                    
                     setDataSoon(response.data);
                 })
             }
@@ -37,46 +39,12 @@ function Battle() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`https://api.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
+        setURL(`https://api1.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
         e.currentTarget.classList.add("active_tab");
     }
-
-
-    const test_data = [
-        {
-            img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-            logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-            title: 'title_1',
-            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        },
-        // {
-        //     img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-        //     logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-        //     title: 'title_2',
-        //     description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        // },
-        // {
-        //     img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-        //     logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-        //     title: 'title_3',
-        //     description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        // },
-        // {
-        //     img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-        //     logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-        //     title: 'title_4',
-        //     description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        // },
-        // {
-        //     img: 'https://i.pinimg.com/564x/1b/77/ac/1b77ac2e284544ad1c67da4621f68118.jpg',
-        //     logo: 'https://i.pinimg.com/564x/11/39/9f/11399f147a04bbca44b063c2094ced57.jpg',
-        //     title: 'title_5',
-        //     description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem amet non dolorem repellendus doloremque. Eius excepturi saepe sequi et animi.',
-        // },
-    ]
 
 
     
@@ -88,11 +56,11 @@ function Battle() {
         </div>
         <div className="content">
 
+            {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
             { tab == 'active' 
                 ? 
                 <div className="cards">
-                    {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
-                    {test_data?.map((dataCard:any) => <BattleCard data={dataCard}/>)}
+                    {data?.map((dataCard:any) => <BattleCard data={dataCard}/>)}
                 </div>
                 :
                 <div className="cards">

@@ -55,7 +55,7 @@ function Card_Active(data: any) {
       }, 5000);
     }
     else {
-      axios.post('https://api.suiecosystem.top/api/events/start',
+      axios.post('https://api1.suiecosystem.top/api/events/start',
         {
           suiwallet: Cookies.get('suiwallet'),
           raffle_id: data.data.id

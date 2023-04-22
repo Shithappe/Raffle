@@ -16,13 +16,15 @@ import wp from "../assets/wp.png";
 
 
 window.addEventListener('mousemove', (e) => {
-    const blocks = document.getElementsByClassName('screen1')[0].children;
+    const blocks = document.getElementsByClassName('screen1')[0]?.children;
     const speed = 0.01;
 
-    blocks[2].setAttribute("style", `position: relative; top: ${150 + e.screenY * -speed * 2}px;`);
-    blocks[3].setAttribute("style", `top: ${410 + e.screenY * -speed * 2}px;`);
-    blocks[4].setAttribute("style", `top: ${590 + e.screenY * speed * 2}px;`);
-    blocks[5].setAttribute("style", `top: ${570 + e.screenY * speed * 3}px;`);
+    if (blocks){
+        blocks[2].setAttribute("style", `position: relative; top: ${150 + e.screenY * -speed * 2}px;`);
+        blocks[3].setAttribute("style", `top: ${410 + e.screenY * -speed * 2}px;`);
+        blocks[4].setAttribute("style", `top: ${590 + e.screenY * speed * 2}px;`);
+        blocks[5].setAttribute("style", `top: ${570 + e.screenY * speed * 3}px;`);
+    }
 });
 
 
