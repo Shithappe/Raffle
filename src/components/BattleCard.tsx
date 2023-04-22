@@ -5,47 +5,52 @@ import twitter_logo from "../assets/twitter-social-media-network-svgrepo-com.png
 import discord_logo from "../assets/discord.png";
 import ProjectCard from "./ProjectCard";
 
+interface BattleCardProps {
+  data: any;
+};
 
-function BattleCard({ data }: { data: any }) {
+
+function BattleCard({ data }: BattleCardProps) {
   const [blockCard, setBlockCard] = useState(false);
   const [ProjectData, setProjectData] = useState<any[]>([]);
   
   const [selectedProject, setSelectedProject] = useState<{[key: string]: any}>({});    
 
   
-  
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      const results = [];
+  const fetchData = async () => {
+    const results = [];
 
-      try {
-        const arr = JSON.parse(data.res);
-        const all_voted = [];
-        const empty = [];
 
-        if (data.join){
-          for (let i = 0; i < data.all_voted.length; i++) all_voted.push(data.all_voted[i].res);
-  
-          for (let i = 0; i < arr.length; i++) {
-            if (all_voted.includes(arr[i])) empty.push({id: arr[i], percent: data.all_voted[all_voted.indexOf(arr[i])].percent});
-            else empty.push(null);
-          }
-        }
-          
+    try {
+      const arr = JSON.parse(data.res);
+      const all_voted = [];
+      const empty = [];
+
+      if (data.join){
+        for (let i = 0; i < data.all_voted.length; i++) all_voted.push(data.all_voted[i].res);
 
         for (let i = 0; i < arr.length; i++) {
-          const response = await axios.get(`https://old.suiecosystem.top/wp-json/api/get_custom_by_id/${arr[i]}`);
-
-          let temp = response.data;
-          if (data.join) empty[i] ? temp.percent = empty[i]?.percent : temp.percent = 0;
-          results.push(temp);
+          if (all_voted.includes(arr[i])) empty.push({id: arr[i], percent: data.all_voted[all_voted.indexOf(arr[i])].percent});
+          else empty.push(null);
         }
-        setProjectData(results);
-      } catch (error) {
-        console.log(error);
       }
-    };
+        
+
+      for (let i = 0; i < arr.length; i++) {
+        const response = await axios.get(`https://old.suiecosystem.top/wp-json/api/get_custom_by_id/${arr[i]}`);
+
+        let temp = response.data;
+        if (data.join) empty[i] ? temp.percent = empty[i]?.percent : temp.percent = 0;
+        results.push(temp);
+      }
+      setProjectData(results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  useEffect(() => {
+    
     fetchData();    
     
   }, []);
@@ -62,10 +67,7 @@ function BattleCard({ data }: { data: any }) {
       }, 5000);
     }
     else
-    console.log(data.id);
-    console.log(selectedProject.id);
-    
-    axios.post(`${import.meta.env.VITE_API_URL}api/resbats/sendvoice`,
+    axios.post(`${import.meta.env.VITE_API_URL}resbats/sendvoice`,
         {
           battle_id: `${data.id}`,
           res: `${selectedProject.id}`
@@ -77,7 +79,10 @@ function BattleCard({ data }: { data: any }) {
            }
         })
         .then((response) => {
-          console.log(response.data[0]);
+          console.log(response.data);
+          data.all_voted = response.data;
+          fetchData();
+          
           e.target.innerHTML = 'Voted';
           e.target.style.backgroundColor = 'green';
         })
@@ -113,7 +118,7 @@ function BattleCard({ data }: { data: any }) {
 
         { data.join 
           ? <button className="join_button" style={{backgroundColor: 'green'}} onClick={hendleJoin} disabled >Voted</button>
-          : <button className="join_button" onClick={hendleJoin} disabled={!selectedProject}>Vote</button>
+          : <button className="join_button" onClick={hendleJoin} disabled={!selectedProject}>{data.join === undefined ? "Finish" : "Vote"}</button>
         }
         
       </div >

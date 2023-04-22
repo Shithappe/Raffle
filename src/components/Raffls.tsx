@@ -39,7 +39,7 @@ function Raffls() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`${import.meta.env.VITE_API_URL}/${e.target.innerText.toLowerCase()}`);
+        setURL(`${import.meta.env.VITE_API_URL}raffle/${e.target.innerText.toLowerCase()}`);
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");

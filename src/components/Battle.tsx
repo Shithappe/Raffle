@@ -37,7 +37,8 @@ function Battle() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`${import.meta.env.VITE_API_URL}raffle/${e.target.innerText.toLowerCase()}`);
+        setURL(`${import.meta.env.VITE_API_URL}getbattle/${e.target.innerText.toLowerCase()}`);
+        
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
@@ -63,7 +64,7 @@ function Battle() {
                 </div>
                 :
                 <div className="cards">
-                    {data?.map((dataCard:any) => <Card_Completed data={dataCard}/>)}
+                    {data?.map((dataCard:any) => <BattleCard  data={dataCard}/>)}
                 </div>
             }
 
