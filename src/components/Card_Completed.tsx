@@ -50,7 +50,7 @@ function hendleJoin(e:any){
 
 
   const headers = { Authorization: `Bearer ${Cookies.get("token")}` };
-  axios.get(`https://api1.suiecosystem.top/api/raffle/winners/${data.data.id}`, { headers })
+  axios.get(`${import.meta.env.VITE_API_URL}raffle/winners/${data.data.id}`, { headers })
   .then((response)=>{
     setWinners(response.data);
   })

@@ -29,7 +29,7 @@ function WhiteListCard({ data, index }: { data: any, index: number }) {
         }
         else {
           if (data.rule)
-            axios.post('https://api1.suiecosystem.top/api/wl/reg',
+            axios.post(`${import.meta.env.VITE_API_URL}wl/reg`,
               {
                 wl_projects_id: String(data.id)
               },
@@ -49,8 +49,6 @@ function WhiteListCard({ data, index }: { data: any, index: number }) {
         }
       }
     
-      console.log(data);
-      
     
     return (
       <div className="main_card">

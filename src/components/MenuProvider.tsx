@@ -7,8 +7,8 @@ function MenuProvider({menuEl}:{menuEl:any}) {
 
     switch (menuEl) {
         case 'Raffles': return (<Raffls/>);
-        case 'Battle': return (<Battle/>);
         case 'White List': if (localStorage.getItem('discord_data')) return (<WhiteList/>);
+        case 'Battles': return (<Battle/>);
         case 'Championship': return (<Championship/>);
         default: return ( <div></div> )
     }

@@ -37,7 +37,7 @@ const Nav = (suiwallet:any) => {
     else{
       if (code)
       axios
-        .get(`https://api1.suiecosystem.top/api/callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
+        .get(`${import.meta.env.VITE_API_URL}callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
         .then((response:any) => {
           // console.log(response.data);
           

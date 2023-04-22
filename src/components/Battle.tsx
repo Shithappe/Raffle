@@ -3,13 +3,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Card_Completed from './Card_Completed';
 import BattleCard from './BattleCard';
-import ProjectCard from './ProjectCard';
 
 function Battle() {
     const [data, setData] = useState([]);
     const [dataSoon, setDataSoon] = useState([]);
     const [tab, setRaffls] = useState('active');
-    const [URL, setURL] = useState('https://api.suiecosystem.top/api/getbattle/active');
+    const [URL, setURL] = useState(`${import.meta.env.VITE_API_URL}getbattle/active`);
 
     
     useEffect(()=>{
@@ -22,10 +21,9 @@ function Battle() {
             axios.get(URL, { headers })
                 .then((response)=>{
                     setData(response.data);
-                    // console.log(response.data);
                 })
             if (tab == 'active'){
-                axios.get('https://api1.suiecosystem.top/api/getbattle/soon', { headers })
+                axios.get(`${import.meta.env.VITE_API_URL}getbattle/soon`, { headers })
                 .then((response)=>{
                     
                     setDataSoon(response.data);
@@ -39,7 +37,7 @@ function Battle() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`https://api1.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
+        setURL(`${import.meta.env.VITE_API_URL}raffle/${e.target.innerText.toLowerCase()}`);
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
@@ -55,6 +53,7 @@ function Battle() {
             <button id='completed_tab' className="tab" onClick={handelCompleted}>Completed</button>
         </div>
         <div className="content">
+            
 
             {/* {data?.sort((a:any, b:any) => a.end_date > b.end_date ? 1 : -1).map((dataCard:any) => <Card_Active data={dataCard}/>)} */}
             { tab == 'active' 

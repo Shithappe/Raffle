@@ -65,7 +65,7 @@ function BattleCard({ data }: { data: any }) {
     console.log(data.id);
     console.log(selectedProject.id);
     
-    axios.post('https://api.suiecosystem.top/api/resbats/sendvoice',
+    axios.post(`${import.meta.env.VITE_API_URL}api/resbats/sendvoice`,
         {
           battle_id: `${data.id}`,
           res: `${selectedProject.id}`

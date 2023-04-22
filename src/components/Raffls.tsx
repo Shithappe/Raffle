@@ -9,7 +9,7 @@ function Raffls() {
     const [data, setData] = useState([]);
     const [dataSoon, setDataSoon] = useState([]);
     const [tab, setRaffls] = useState('active');
-    const [URL, setURL] = useState('https://api1.suiecosystem.top/api/raffle/active');
+    const [URL, setURL] = useState(`${import.meta.env.VITE_API_URL}raffle/active`);
     
 
     useEffect(()=>{
@@ -26,7 +26,7 @@ function Raffls() {
                     setData(response.data);
                 })
             if (tab == 'active'){
-                axios.get('https://api1.suiecosystem.top/api/raffle/soon', { headers })
+                axios.get(`${import.meta.env.VITE_API_URL}raffle/soon`, { headers })
                 .then((response)=>{
                     setDataSoon(response.data);
                 })
@@ -39,7 +39,7 @@ function Raffls() {
     function handelCompleted(e: any) {
         setData([]);
         setRaffls(e.target.innerText.toLowerCase());
-        setURL(`https://api1.suiecosystem.top/api/raffle/${e.target.innerText.toLowerCase()}`);
+        setURL(`${import.meta.env.VITE_API_URL}/${e.target.innerText.toLowerCase()}`);
 
         let foo = document.getElementsByClassName("tabs")[0].children;
         for (var i = 0; i < foo.length; i++) foo[i].classList.remove("active_tab");
