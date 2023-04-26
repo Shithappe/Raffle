@@ -67,6 +67,7 @@ body::-webkit-scrollbar {
   color: rgb(53, 53, 53);
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.2s ease-in-out;
+  user-select: none;
 }
 
 .nav_title h1 span {
@@ -913,7 +914,7 @@ iframe * {
   nav {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     padding: 0;
     margin: 0 10vw;
   }
@@ -927,20 +928,42 @@ iframe * {
     width: 100%;
   }
 
+  /* .discord_title{
+    display: none;
+  } */
+
   .main {
+    display: flex;
+    flex-direction: column;
     padding: 2rem 0;
   }
 
-  .main .menu {
-    display: none;
+  .main .menu .menuEl {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    /* padding: 0px; */
+    /* justify-content: center; */
+  }
+  
+  .listMenu_El{
+    width: max-content;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
   }
 
   .tabs {
     display: flex;
-    margin: 0;
     flex-direction: row;
     justify-content: space-evenly;
+    text-align: center;
   }
+
+  /* .tab{
+    padding: 0;
+    margin: 0;
+  } */
 
   .screen1_title {
     margin: 38vh auto;

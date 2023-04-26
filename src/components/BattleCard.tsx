@@ -7,10 +7,11 @@ import ProjectCard from "./ProjectCard";
 
 interface BattleCardProps {
   data: any;
+  disable: boolean;
 };
 
 
-function BattleCard({ data }: BattleCardProps) {
+function BattleCard({ data, disable }: BattleCardProps) {
   const [blockCard, setBlockCard] = useState(false);
   const [ProjectData, setProjectData] = useState<any[]>([]);
   
@@ -19,7 +20,6 @@ function BattleCard({ data }: BattleCardProps) {
   
   const fetchData = async () => {
     const results = [];
-
 
     try {
       const arr = JSON.parse(data.res);
@@ -79,8 +79,9 @@ function BattleCard({ data }: BattleCardProps) {
            }
         })
         .then((response) => {
-          console.log(response.data);
+          data.join = true;
           data.all_voted = response.data;
+          
           fetchData();
           
           e.target.innerHTML = 'Voted';
@@ -111,6 +112,7 @@ function BattleCard({ data }: BattleCardProps) {
               <span>{data.description}</span>
               <div className="vote">
               {ProjectData.map((item:any)=> <ProjectCard setSelectedProject={setSelectedProject} data={item} />)}
+              {/* {ProjectData.map((item:any)=> <ProjectCard setSelectedProject={!disable && setSelectedProject} data={item} />)} */}
           </div>
             </div>
           </div>
@@ -118,7 +120,7 @@ function BattleCard({ data }: BattleCardProps) {
 
         { data.join 
           ? <button className="join_button" style={{backgroundColor: 'green'}} onClick={hendleJoin} disabled >Voted</button>
-          : <button className="join_button" onClick={hendleJoin} disabled={!selectedProject}>{data.join === undefined ? "Finish" : "Vote"}</button>
+          : <button className="join_button" onClick={hendleJoin} disabled={!selectedProject || disable}>{data.join === undefined ? "Finish" : "Vote"}</button>
         }
         
       </div >

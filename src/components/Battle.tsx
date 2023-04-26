@@ -60,11 +60,11 @@ function Battle() {
             { tab == 'active' 
                 ? 
                 <div className="cards">
-                    {data?.map((dataCard:any) => <BattleCard data={dataCard}/>)}
+                    {data?.map((dataCard:any) => <BattleCard data={dataCard} disable={false} />)}
                 </div>
                 :
                 <div className="cards">
-                    {data?.map((dataCard:any) => <BattleCard  data={dataCard}/>)}
+                    {data?.map((dataCard:any) => <BattleCard  data={dataCard} disable={true} />)}
                 </div>
             }
 

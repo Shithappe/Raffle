@@ -39,7 +39,6 @@ const Nav = (suiwallet:any) => {
       axios
         .get(`${import.meta.env.VITE_API_URL}callback2?code=${code}&suiwallet=${suiwallet.suiwallet}`)
         .then((response:any) => {
-          // console.log(response.data);
           
             // setData_discord(response.data);
             localStorage.setItem('discord_data', JSON.stringify(response.data));
@@ -60,8 +59,6 @@ const Nav = (suiwallet:any) => {
   }, [])
 
   function auth_discord() {
-    // const redirect_uri = 'https://127.0.0.1:5173';
-    // const redirect_uri = 'https://fanciful-nougat-88db18.netlify.app';
     const redirect_uri = 'https://raffles.suiecosystem.top/';
     location.href = `https://discord.com/oauth2/authorize?client_id=1033883579278688267&redirect_uri=${redirect_uri}&response_type=code&scope=identify%20email%20guilds&prompt=none`;
   }
@@ -105,7 +102,7 @@ const Nav = (suiwallet:any) => {
       </div>
 
       <div className="buttons_nav">
-        { (Cookies.get('token')) ? discord_mode : null }
+        { (Cookies.get('token')) && discord_mode }
           <ConnectButton label="Connect Wallet"/>
 
         <button className="logout_button discord_button" onClick={logout}>Logout</button>

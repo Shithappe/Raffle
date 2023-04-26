@@ -1,12 +1,9 @@
 interface ProjectCardProps {
     data: any;
-    // percent: number;
     setSelectedProject: any;
   }
 
 function ProjectCard({ data, setSelectedProject }: ProjectCardProps) {
-    //  console.log(data);
-    
 
     function hendleSelect(e:any){
         setSelectedProject(data);
